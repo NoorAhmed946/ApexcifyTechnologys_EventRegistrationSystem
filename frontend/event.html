@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#1ee0cc",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#ebe7e7",
+              "secondary-fixed-dim": "#ffb3b5",
+              "secondary-container": "#e51245",
+              "on-primary-fixed": "#22005d",
+              "on-primary-container": "#d0beff",
+              "on-primary-fixed-variant": "#5300cd",
+              "secondary": "#ba0034",
+              "on-secondary-container": "#fffbff",
+              "surface-container": "#f0edec",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#f3f0ef",
+              "primary": "#4800b2",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#313030",
+              "on-tertiary-fixed-variant": "#005048",
+              "error": "#ba1a1a",
+              "primary-container": "#6200ee",
+              "tertiary": "#00453e",
+              "on-secondary-fixed-variant": "#920027",
+              "tertiary-container": "#005f56",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#4ffbe6",
+              "surface": "#fcf9f8",
+              "inverse-primary": "#cfbdff",
+              "surface-container-low": "#f6f3f2",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed-dim": "#cfbdff",
+              "tertiary-fixed-dim": "#17deca",
+              "surface-bright": "#fcf9f8",
+              "secondary-fixed": "#ffdada",
+              "surface-tint": "#6d23f9",
+              "primary-fixed": "#e8ddff",
+              "surface-container-highest": "#e5e2e1",
+              "error-container": "#ffdad6",
+              "on-surface": "#1c1b1b",
+              "surface-dim": "#dcd9d9",
+              "on-tertiary-fixed": "#00201c",
+              "outline": "#7a7488",
+              "on-secondary-fixed": "#40000c",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#494456",
+              "background": "#fcf9f8",
+              "outline-variant": "#cbc3d9",
+              "on-background": "#1c1b1b"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #09090b; /* Zinc 950 for dark aesthetic from image_6 */
+            color: #fcf9f8;
+        }
+        .glass-panel {
+            background: rgba(15, 15, 20, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-secondary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-xl shadow-[0px_4px_32px_rgba(72,0,178,0.04)]">
+<div class="flex justify-between items-center px-6 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<button onclick="window.location.href='index.html'" class="text-violet-400 p-2 hover:bg-zinc-800/50 rounded-lg transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline tracking-tight font-bold text-2xl text-violet-600 dark:text-violet-400">The Neon Gallery</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors font-label uppercase tracking-widest text-xs" href="index.html">Discover</a>
+<a class="text-violet-400 font-bold border-b-2 border-violet-500 font-label uppercase tracking-widest text-xs" href="index.html#events">Events</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors font-label uppercase tracking-widest text-xs" href="#">Search</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors font-label uppercase tracking-widest text-xs" href="login.html">Profile</a>
+</nav>
+</div>
+<a href="login.html" class="h-10 w-10 rounded-full overflow-hidden border border-violet-500/30 block hover:opacity-80 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional man with a friendly expression in studio lighting with a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz-qvROFPTTLenxhZ1QCb9TQsOm5EqStqo76JHIkMlC2ClY2gpQi7m6pmHUnc2zAd6OVH5RPVOIarrJr2Ib3gweGK6DCQxel_2bd3-FkTToiUJRanmYNxS5yDNfM-gRjN0767XYBGiO_U6BVCMFS-Mi7oPcrNDbKkGFeRdQZdidOJ1dJvLjHOsC5bFRrV9cmji37nyqkszaJS5TJC0pM0mxQnOK5zei3dtlm-R4CqCN6fy5dN2KsaRxyUU_nZMt3efIKUAQcU0Ya8"/>
+</a>
+</div>
+</header>
+<main class="pt-16 pb-32 md:pb-16">
+<!-- Hero Banner Section -->
+<section class="relative h-[530px] md:h-[663px] w-full overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.2] brightness-75" data-alt="large scale tech conference stage with neon purple and pink lighting, huge digital screens, and a silhouetted audience in a dark industrial hall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAteLFvDlVnFG0k7OqhX5znVqrZ25gvvGBMT0hfs5qtsspEqpQtMo9-mQmXCdakMuhFg-jDUWuFTxtFGGXlAAO0s3WT__62Qb1Eh0VgWmShUU-s-h6_XVDBJBybWVbdBCUU_7KFpEkKiTht5KuUarqLBSZvXELtlQ6fvTuegGk7oXEQb1rxse6LprZf2_scKsqt0DA9qR9dhDYS-2AWxLoPYGPHkt7jaNYgxIBoKS0QGFtaqazy4gRGHj3OBEGwUmB1gTOGWmsz25s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 md:p-16">
+<div class="max-w-7xl mx-auto">
+<span class="font-label text-secondary font-bold tracking-[0.2em] uppercase mb-4 block">International Summit 2024</span>
+<h2 class="font-headline text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6 max-w-4xl">
+                        THE ARCHITECTURE <br/>OF <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-secondary">NEON LIGHT.</span>
+</h2>
+<div class="flex flex-wrap gap-4 items-center">
+<div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-md px-4 py-2 rounded-full border border-zinc-800">
+<span class="material-symbols-outlined text-violet-400" data-icon="calendar_today">calendar_today</span>
+<span class="font-label text-sm text-zinc-200">OCT 24, 2024 • 07:00 PM</span>
+</div>
+<div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-md px-4 py-2 rounded-full border border-zinc-800">
+<span class="material-symbols-outlined text-violet-400" data-icon="location_on">location_on</span>
+<span class="font-label text-sm text-zinc-200">PIER 48, SAN FRANCISCO</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
+<!-- Left Column: Content -->
+<div class="lg:col-span-8 space-y-16">
+<!-- Description -->
+<article class="space-y-8">
+<h3 class="font-headline text-3xl font-bold text-white border-l-4 border-secondary pl-6">The Information Layer</h3>
+<div class="font-body text-zinc-400 text-lg leading-relaxed space-y-6">
+<p>Join us for an immersive journey into the intersection of generative technology and spatial design. "The Information Layer" isn't just a conference; it's a living laboratory hosted at the historic Pier 48. Over the course of three days, we explore how data visualization and architectural lighting are reshaping our urban environments.</p>
+<p>Our 2024 summit features over 40 keynote speakers, 12 interactive installation zones, and a dedicated 'Neon Lab' where participants can experiment with real-time reactive lighting arrays. Whether you're a developer, designer, or urban planner, this event provides the raw materials to build the next generation of illuminated experiences.</p>
+<ul class="space-y-4 pt-4">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span>Deep dive into Web3 Spatial Architectures</span>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span>Hands-on workshop with Kinetic LED arrays</span>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span>Networking dinner with Silicon Valley's top creative directors</span>
+</li>
+</ul>
+</div>
+</article>
+<!-- Map Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-headline text-2xl font-bold text-white">Location</h3>
+<p class="font-label text-zinc-500 uppercase">Pier 48, San Francisco, CA 94158</p>
+</div>
+<div class="h-96 w-full rounded-3xl overflow-hidden bg-zinc-900 relative grayscale contrast-125 border border-zinc-800">
+<img class="w-full h-full object-cover opacity-50" data-alt="a dark stylized satellite map view of the San Francisco waterfront with glowing purple markers indicating the event location at Pier 48" data-location="Pier 48, San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDkdnJ4SIcEqlRK1U96d7XVVj1Ltm7xl8hiz10wECrGNs9dKc1vMQ_Fs6zUqPjCME24bIqSpAQHzAipbPRA4eY9uuDh5dks2vag12JRcuaTnDLhVK5DGsq7L1xObUOMKPZJrPUhKL3FzAt1NhgQNBzMupGH8Om10gheZo6rnedtHEtvudcy8n3wdUhGO7berLDrnqehS3gHpHwCA-TuZiYLDAOcYh6uWdfV5HSNXNNCa_EsjVc7buekrVsXbSIHTU6uCvnLV1wzTw"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative">
+<div class="absolute inset-0 bg-secondary blur-2xl opacity-40 animate-pulse"></div>
+<span class="material-symbols-outlined text-secondary text-5xl relative" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Organizer Section -->
+<section class="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 flex flex-col md:flex-row items-center gap-8">
+<div class="h-24 w-24 rounded-2xl overflow-hidden rotate-3">
+<img class="w-full h-full object-cover" data-alt="headshot of a creative tech director with glasses, wearing a black turtleneck, soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjeRJp13qa3WZadsUOd2-DG-N2aRtOx4Fg0AVYaX2Aqpd79RlSG8m7PiLjYpS6yWyV68DSTs8btH_NCh7t9EKZP2gWO89zKOvDEz9p1Jgisb9qxm0GnsbYTEJ4SWlKtDtz4dxgDJQXXbnGIoh9Posfns6RYDEPZKAPKGEoQ_iX0I23yA2HtiPPNRWY1OCHR0LL4U-XkMh5jnjf8t1OSXfI2E_Rlwdvp5-KwtVoNDop0fOKilWOHB-cMWTLKEj_uoQomawwKpVH_qU"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h4 class="font-headline text-xl font-bold text-white">Curated by Alex Rivers</h4>
+<p class="font-body text-zinc-400 mt-1">Founder of Neon Collective &amp; Creative Director at Flux Labs.</p>
+<div class="mt-4 flex flex-wrap justify-center md:justify-start gap-4">
+<a class="text-secondary font-bold hover:underline flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+                                Contact Organizer
+                            </a>
+<span class="text-zinc-700">|</span>
+<a class="text-zinc-400 hover:text-white transition-colors" href="#">View Profile</a>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Registration Box -->
+<div class="lg:col-span-4">
+<div class="sticky top-32 glass-panel p-8 rounded-[2.5rem] border border-white/5 shadow-2xl">
+<div class="flex justify-between items-start mb-8">
+<div>
+<span class="font-label text-zinc-500 text-xs uppercase block mb-1">Standard Entry</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline text-4xl font-black text-white">$49</span>
+<span class="font-body text-zinc-500">/ person</span>
+</div>
+</div>
+<div class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-bold font-label">
+                            12 SPOTS LEFT
+                        </div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between py-3 border-b border-white/5">
+<span class="text-zinc-400">Date</span>
+<span class="text-zinc-200 font-semibold">Oct 24, 2024</span>
+</div>
+<div class="flex justify-between py-3 border-b border-white/5">
+<span class="text-zinc-400">Time</span>
+<span class="text-zinc-200 font-semibold">19:00 - 23:00</span>
+</div>
+<div class="flex justify-between py-3 border-b border-white/5">
+<span class="text-zinc-400">Access</span>
+<span class="text-zinc-200 font-semibold">Full Event + VIP Lounge</span>
+</div>
+</div>
+<button onclick="window.location.href='register.html'" class="w-full bg-secondary hover:bg-secondary/90 text-white font-headline font-bold py-5 rounded-full shadow-lg shadow-secondary/20 transition-all active:scale-95 text-lg">
+                        Register Now
+                    </button>
+<p class="text-center text-zinc-500 text-xs mt-6 font-body">
+                        Secure checkout powered by NeonPay. <br/>Tickets are non-refundable after Oct 15.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Sticky Registration -->
+<div class="md:hidden fixed bottom-0 left-0 w-full p-4 glass-panel border-t border-white/10 z-50">
+<div class="flex items-center justify-between max-w-md mx-auto">
+<div>
+<span class="block font-headline text-2xl font-black text-white">$49</span>
+<span class="block font-label text-[10px] text-secondary font-bold uppercase tracking-tighter">Only 12 Left</span>
+</div>
+<button onclick="window.location.href='register.html'" class="bg-secondary text-white font-headline font-bold px-10 py-4 rounded-full shadow-xl active:scale-90 transition-transform">
+                Register Now
+            </button>
+</div>
+</div>
+<!-- BottomNavBar (Hidden on desktop as per Shell Visibility Rules for sub-page, but defined for consistency) -->
+<nav class="hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-zinc-950/90 backdrop-blur-2xl z-50 rounded-t-3xl border-t border-zinc-800/50 shadow-[0_-8px_40px_rgba(72,0,178,0.1)]">
+<div onclick="window.location.href='index.html'" class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 px-5 py-2 transition-all cursor-pointer relative z-10">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Discover</span>
+</div>
+<div onclick="window.location.href='index.html#events'" class="flex flex-col items-center justify-center bg-violet-950/40 text-violet-400 rounded-2xl px-5 py-2 transition-all cursor-pointer relative z-10">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Events</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 px-5 py-2 transition-all cursor-pointer relative z-10">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Search</span>
+</div>
+<div onclick="window.location.href='login.html'" class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 px-5 py-2 transition-all cursor-pointer relative z-10">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

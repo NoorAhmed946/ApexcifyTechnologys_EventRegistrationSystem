@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#1ee0cc",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#ebe7e7",
+              "secondary-fixed-dim": "#ffb3b5",
+              "secondary-container": "#e51245",
+              "on-primary-fixed": "#22005d",
+              "on-primary-container": "#d0beff",
+              "on-primary-fixed-variant": "#5300cd",
+              "secondary": "#ba0034",
+              "on-secondary-container": "#fffbff",
+              "surface-container": "#f0edec",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#f3f0ef",
+              "primary": "#4800b2",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#313030",
+              "on-tertiary-fixed-variant": "#005048",
+              "error": "#ba1a1a",
+              "primary-container": "#6200ee",
+              "tertiary": "#00453e",
+              "on-secondary-fixed-variant": "#920027",
+              "tertiary-container": "#005f56",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#4ffbe6",
+              "surface": "#fcf9f8",
+              "inverse-primary": "#cfbdff",
+              "surface-container-low": "#f6f3f2",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed-dim": "#cfbdff",
+              "tertiary-fixed-dim": "#17deca",
+              "surface-bright": "#fcf9f8",
+              "secondary-fixed": "#ffdada",
+              "surface-tint": "#6d23f9",
+              "primary-fixed": "#e8ddff",
+              "surface-container-highest": "#e5e2e1",
+              "error-container": "#ffdad6",
+              "on-surface": "#1c1b1b",
+              "surface-dim": "#dcd9d9",
+              "on-tertiary-fixed": "#00201c",
+              "outline": "#7a7488",
+              "on-secondary-fixed": "#40000c",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#494456",
+              "background": "#fcf9f8",
+              "outline-variant": "#cbc3d9",
+              "on-background": "#1c1b1b"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+      }
+      .text-gradient {
+        background: linear-gradient(135deg, #4800b2 0%, #ba0034 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-on-surface font-body text-on-surface-variant">
+<!-- Background Layer (The Aesthetic Image) -->
+<div class="fixed inset-0 z-0 overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 brightness-50" data-alt="high-end editorial photography of a neon-lit art gallery with deep violet and magenta atmospheric lighting and sleek architectural lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeb5kAkxIyUN62jLxRFeJHOTpbDchAK7asgBUxBj7xrhE1JkTzzYZ6N-V3r5FPMVTwWd4xfhQFFwqQfuYuM9eMzR6Kk1G7vMM959GOzW2CUQHalNWRlsurWIn0yicAsIp7HiQ1mGPxy0ipbPONSBtZewNwisca1oC5Sp6vGGTIKs3ULiPyQybrU9hFKVqAwsYg3AJ8__vP_d9Rv5VoXkEtKvzqhd2DrHh1jE8n141WQPg-E2Y2mvo8K3449Z79AndHn49bOtAjyTY"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-on-surface via-transparent to-on-surface/40"></div>
+</div>
+<!-- Top AppBar (from JSON) -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-xl shadow-[0px_4px_32px_rgba(72,0,178,0.04)]">
+<div class="flex justify-between items-center px-6 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-zinc-800/50 rounded-lg transition-all duration-300 p-2 text-violet-400">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-violet-500 font-black tracking-tighter italic font-headline text-2xl">The Neon Gallery</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-headline tracking-tight font-bold text-violet-400 border-b-2 border-violet-500 py-1" href="index.html">Discover</a>
+<a class="font-headline tracking-tight font-bold text-zinc-400 hover:text-zinc-100 transition-colors py-1" href="index.html#events">Events</a>
+<a class="font-headline tracking-tight font-bold text-zinc-400 hover:text-zinc-100 transition-colors py-1" href="#">Search</a>
+</nav>
+<a href="login.html" class="w-10 h-10 rounded-full bg-primary-container border-2 border-violet-500 overflow-hidden block hover:opacity-80 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="User profile avatar of a creative professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTt-yK5egQGBZVe1r7CMtMqFGADZVBBen49zCckGvceF5dQZGfRoB4BKV5H74JQ0gfMba7Uk1XNTmqNrAvoqtd4OZaklblIrVUeb-cOZTh2o58u5K3CNtuZZDk75KPV5hrkAhhpiOfsvz4lGT4Dp4aHLqcKGOojdj4TBEd59qeZC3V05gNX-xPW8_g-8m7ieVEmuo8suvHhMF1ocbv6eKxwxmnfFxhjOZJ_HdrYANgTwaXpLzYNtWyvym4zqMZYrGCrUGptWyVfWg"/>
+</a>
+</div>
+</div>
+</header>
+<!-- Modal Content Canvas -->
+<main class="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-8">
+<div class="w-full max-w-4xl glass-card rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
+<!-- Left Sidebar: Progress & Context -->
+<div class="lg:col-span-4 bg-zinc-950/40 p-10 flex flex-col justify-between border-r border-white/5">
+<div>
+<div class="mb-12">
+<span class="font-label text-violet-400 tracking-[0.2em] font-bold block mb-2">REGISTRATION</span>
+<h2 class="font-headline text-4xl text-white font-extrabold leading-tight tracking-tight">Claim Your Experience</h2>
+</div>
+<!-- Stepper UI -->
+<div class="space-y-8">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-primary/20">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-white text-[10px] tracking-widest font-black">STEP 01</span>
+<span class="text-zinc-100 font-bold text-lg">Personal Details</span>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-zinc-600 flex items-center justify-center text-zinc-400">
+<span class="font-bold">02</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-zinc-500 text-[10px] tracking-widest">STEP 02</span>
+<span class="text-zinc-400 font-bold text-lg">Event Selection</span>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-zinc-600 flex items-center justify-center text-zinc-400">
+<span class="font-bold">03</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-zinc-500 text-[10px] tracking-widest">STEP 03</span>
+<span class="text-zinc-400 font-bold text-lg">Finalize Access</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-10">
+<p class="text-zinc-500 text-sm leading-relaxed">
+                            Join our elite community of art enthusiasts and gain early access to the upcoming neon immersive exhibits.
+                        </p>
+</div>
+</div>
+<!-- Right Side: Form Fields -->
+<div class="lg:col-span-8 p-10 md:p-16 flex flex-col justify-center bg-zinc-950/60">
+<div class="max-w-md mx-auto w-full">
+<header class="mb-12">
+<h3 class="font-headline text-2xl text-white mb-2">Let's start with the basics</h3>
+<div class="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+</header>
+<form class="space-y-8" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+<!-- Input Field: Name -->
+<div class="relative group">
+<label class="absolute -top-3 left-4 bg-zinc-950 px-2 text-[10px] font-black tracking-widest text-violet-400 z-10">FULL NAME</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-zinc-800 py-4 px-4 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-primary transition-colors text-lg" placeholder="e.g. Alexander Rivers" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-primary">person</span>
+</div>
+</div>
+<!-- Input Field: Email -->
+<div class="relative group">
+<label class="absolute -top-3 left-4 bg-zinc-950 px-2 text-[10px] font-black tracking-widest text-violet-400 z-10">EMAIL ADDRESS</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-zinc-800 py-4 px-4 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-primary transition-colors text-lg" placeholder="alex@neon-gallery.art" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-primary">alternate_email</span>
+</div>
+</div>
+<!-- Input Field: Phone -->
+<div class="relative group">
+<label class="absolute -top-3 left-4 bg-zinc-950 px-2 text-[10px] font-black tracking-widest text-violet-400 z-10">MOBILE NUMBER</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-zinc-800 py-4 px-4 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-primary transition-colors text-lg" placeholder="+1 (555) 000-0000" type="tel"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-primary">smartphone</span>
+</div>
+</div>
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+<button onclick="window.location.href='event.html'" class="text-zinc-500 hover:text-zinc-200 font-bold tracking-tight text-sm flex items-center gap-2 group transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                                    Cancel Registration
+                                </button>
+<button class="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-primary to-primary-container text-white rounded-full font-headline font-bold text-lg hover:shadow-[0_0_30px_rgba(72,0,178,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 active:scale-95" type="submit">
+                                    Next Step
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-12 flex items-center gap-4 p-4 rounded-2xl bg-violet-950/20 border border-violet-500/10">
+<span class="material-symbols-outlined text-violet-400" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-xs text-zinc-400 leading-relaxed">
+                                Your data is protected by the Gallery's encryption standards. By continuing, you agree to our <a class="text-violet-400 underline" href="#">Privacy Terms</a>.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (Suppressed on large screens, shown on mobile per rule) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-zinc-950/90 backdrop-blur-2xl z-50 rounded-t-3xl border-t border-zinc-800/50 shadow-[0_-8px_40px_rgba(72,0,178,0.1)]">
+<div onclick="window.location.href='index.html'" class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 px-5 py-2 hover:bg-zinc-900/80 transition-all rounded-2xl cursor-pointer relative z-10">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Discover</span>
+</div>
+<div onclick="window.location.href='index.html#events'" class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 px-5 py-2 hover:bg-zinc-900/80 transition-all rounded-2xl cursor-pointer relative z-10">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Events</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 px-5 py-2 hover:bg-zinc-900/80 transition-all rounded-2xl cursor-pointer relative z-10">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Search</span>
+</div>
+<div onclick="window.location.href='login.html'" class="flex flex-col items-center justify-center bg-violet-950/40 text-violet-400 rounded-2xl px-5 py-2 cursor-pointer relative z-10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label text-[10px] uppercase tracking-[0.05em] mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer Hub | The Neon Gallery</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#4800b2",
+                "primary-container": "#6200ee",
+                "secondary": "#ba0034",
+                "zinc-950": "#09090b",
+                "zinc-900": "#18181b",
+                "zinc-800": "#27272a"
+              },
+              fontFamily: {
+                "headline": ["Epilogue"],
+                "body": ["Manrope"],
+                "label": ["Manrope"]
+              },
+            },
+          },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { background: rgba(24, 24, 27, 0.7); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-body min-h-screen selection:bg-violet-500/30 flex">
+
+    <!-- Organizer Sidebar Navigation -->
+    <aside class="w-64 fixed h-full border-r border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl z-40 hidden lg:flex flex-col">
+        <div class="p-6">
+            <h1 class="font-headline font-black text-xl text-violet-400 cursor-pointer" onclick="window.location.href='index.html'">The Neon Gallery</h1>
+            <span class="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">Organizer Studio</span>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="admin-dashboard.html" class="flex items-center gap-3 bg-violet-600/10 text-violet-400 font-bold px-4 py-3 rounded-xl border border-violet-500/20">
+                <span class="material-symbols-outlined">dashboard</span>
+                Dashboard Overview
+            </a>
+            <a href="#" class="flex items-center gap-3 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 font-medium px-4 py-3 rounded-xl transition-all">
+                <span class="material-symbols-outlined">stadium</span>
+                My Events
+            </a>
+            <a href="#" class="flex items-center gap-3 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 font-medium px-4 py-3 rounded-xl transition-all">
+                <span class="material-symbols-outlined">group</span>
+                Attendees List
+            </a>
+            <a href="#" class="flex items-center gap-3 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 font-medium px-4 py-3 rounded-xl transition-all relative">
+                <span class="material-symbols-outlined">account_balance_wallet</span>
+                Financials
+                <span class="absolute right-4 w-2 h-2 rounded-full bg-red-500"></span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-zinc-800/50">
+            <button onclick="window.location.href='admin-login.html'" class="flex items-center gap-3 text-zinc-500 hover:text-red-400 px-4 py-3 w-full rounded-xl transition-all font-bold">
+                <span class="material-symbols-outlined">logout</span>
+                Secure Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 lg:ml-64 pt-8 px-6 lg:px-10 pb-20 max-w-[1600px] mx-auto w-full">
+        <!-- Top Action Bar -->
+        <header class="flex justify-between items-center mb-12">
+            <div>
+                <h2 class="font-headline text-3xl font-bold">Welcome back, Editor</h2>
+                <p class="text-zinc-500">Here's the status of your upcoming digital events.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="bg-violet-600 text-white font-bold px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-violet-700 transition-all shadow-lg shadow-violet-900/30">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                    Create New Event
+                </button>
+            </div>
+        </header>
+
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="glass-panel p-6 rounded-2xl border border-zinc-800/80">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="material-symbols-outlined text-violet-400 bg-violet-900/30 p-2 rounded-lg">confirmation_number</span>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-900/20 px-2 py-1 rounded-full">+12%</span>
+                </div>
+                <h3 class="text-3xl font-black font-headline mb-1">2,482</h3>
+                <p class="text-sm font-label text-zinc-400 uppercase tracking-widest block">Total Registrations</p>
+            </div>
+            
+            <div class="glass-panel p-6 rounded-2xl border border-zinc-800/80">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="material-symbols-outlined text-violet-400 bg-violet-900/30 p-2 rounded-lg">attach_money</span>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-900/20 px-2 py-1 rounded-full">+8%</span>
+                </div>
+                <h3 class="text-3xl font-black font-headline mb-1">$84,050</h3>
+                <p class="text-sm font-label text-zinc-400 uppercase tracking-widest block">Net Revenue</p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border border-zinc-800/80">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="material-symbols-outlined text-zinc-400 bg-zinc-800/50 p-2 rounded-lg">visibility</span>
+                    <span class="text-xs font-bold text-zinc-500 bg-zinc-800 px-2 py-1 rounded-full">Active</span>
+                </div>
+                <h3 class="text-3xl font-black font-headline mb-1">4</h3>
+                <p class="text-sm font-label text-zinc-400 uppercase tracking-widest block">Live Events</p>
+            </div>
+
+            <div class="bg-violet-600/20 p-6 rounded-2xl border border-violet-500/30 relative overflow-hidden group">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-violet-600 rounded-full blur-2xl opacity-50"></div>
+                <span class="material-symbols-outlined text-violet-300 mb-6 block relative z-10">insights</span>
+                <p class="text-sm font-bold text-violet-200 relative z-10 leading-relaxed">Your events are trending 20% higher in the 'Digital Art' category this week!</p>
+            </div>
+        </div>
+
+        <!-- Event Management Section -->
+        <div>
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="font-headline text-2xl font-bold">Manage Active Events</h3>
+                <button class="text-violet-400 font-bold text-sm hover:text-white transition-colors">View All Events</button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-zinc-800">
+                            <th class="py-4 px-4 font-label text-xs uppercase tracking-widest text-zinc-500 font-medium">Event Details</th>
+                            <th class="py-4 px-4 font-label text-xs uppercase tracking-widest text-zinc-500 font-medium">Date & Time</th>
+                            <th class="py-4 px-4 font-label text-xs uppercase tracking-widest text-zinc-500 font-medium">Registrations</th>
+                            <th class="py-4 px-4 font-label text-xs uppercase tracking-widest text-zinc-500 font-medium">Revenue</th>
+                            <th class="py-4 px-4 font-label text-xs uppercase tracking-widest text-zinc-500 font-medium text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-800/50">
+                        <!-- Row 1 -->
+                        <tr class="hover:bg-zinc-900/30 transition-colors">
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-4">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8" class="w-12 h-12 rounded-lg object-cover" alt="Thumb"/>
+                                    <div>
+                                        <p class="font-bold text-white mb-0.5">Midnight Synthwave Session</p>
+                                        <p class="text-xs text-zinc-500">Warehouse 7</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <p class="text-sm font-bold text-zinc-200">Oct 24, 2024</p>
+                                <p class="text-xs text-zinc-500">9:00 PM</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-full bg-zinc-800 rounded-full h-1.5 max-w-[100px]">
+                                        <div class="bg-violet-500 h-1.5 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-sm font-medium text-zinc-300">850/1000</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 font-headline font-bold text-zinc-200">$38,250</td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-all" title="Edit Event">
+                                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                                </button>
+                                <button class="p-2 text-zinc-400 hover:text-violet-400 hover:bg-violet-900/20 rounded-lg transition-all" title="View Audience List">
+                                    <span class="material-symbols-outlined text-[20px]">groups</span>
+                                </button>
+                                <button class="p-2 text-zinc-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all" title="Cancel/Delete Event">
+                                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 -->
+                        <tr class="hover:bg-zinc-900/30 transition-colors">
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-4">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMoGxo1egxBP12IMedQEWflI08FHJlMgiCuDD8iLrbg4Hv1Hwe-Brg8CKgE7zDEforXNXOo5nvG-25ncrOFT0lImnDIMmJHrDM4UDMXM2RteWSk86xZd2EUanrnwYE3KBKVtvID_QqlPXV6drMryx7iP07h41M66oqBpFC4kamcuByJxylmBsycrhjJWNQyjWk3GDZ5yuKnmttiGPr9HY9BQyowoL_sAliW4zVsLnDkHwmanN8rjSjbj1MDU_77ZptnPxQUnk_F8" class="w-12 h-12 rounded-lg object-cover" alt="Thumb"/>
+                                    <div>
+                                        <p class="font-bold text-white mb-0.5">Digital Aura Exhibit</p>
+                                        <p class="text-xs text-zinc-500">Grand Gallery</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <p class="text-sm font-bold text-zinc-200">Nov 15, 2024</p>
+                                <p class="text-xs text-zinc-500">10:00 AM</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-full bg-zinc-800 rounded-full h-1.5 max-w-[100px]">
+                                        <div class="bg-violet-500 h-1.5 rounded-full" style="width: 45%"></div>
+                                    </div>
+                                    <span class="text-sm font-medium text-zinc-300">225/500</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 font-headline font-bold text-zinc-200">$18,000</td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-all" title="Edit Event">
+                                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                                </button>
+                                <button class="p-2 text-zinc-400 hover:text-violet-400 hover:bg-violet-900/20 rounded-lg transition-all" title="View Audience List">
+                                    <span class="material-symbols-outlined text-[20px]">groups</span>
+                                </button>
+                                <button class="p-2 text-zinc-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all" title="Cancel/Delete Event">
+                                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Nav Overlay (Simple visual cue) -->
+    <div class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-800 rounded-full px-6 py-3 flex gap-6 shadow-2xl z-50">
+        <button class="text-violet-400"><span class="material-symbols-outlined pb-0">dashboard</span></button>
+        <button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined">stadium</span></button>
+        <button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined">group</span></button>
+        <button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined">account_balance_wallet</span></button>
+    </div>
+</body>
+</html>
