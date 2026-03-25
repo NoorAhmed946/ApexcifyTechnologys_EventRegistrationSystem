@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <script id="tailwind-config">
+    <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -32,11 +32,29 @@
     <style>
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .glass-card { background: rgba(9, 9, 11, 0.7); backdrop-filter: blur(40px); }
-        .text-gradient {
-            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        /* Typewriter animation */
+        @keyframes typewriter-cursor {
+            0%, 100% { border-color: #a78bfa; }
+            50% { border-color: transparent; }
+        }
+        .typewriter-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #a78bfa;
+            width: 0;
+            animation: typewriter-cursor 0.7s step-end infinite;
+            display: inline-block;
+        }
+        .typewriter-text.typing {
+            animation: typewrite 0.8s steps(8) forwards, typewriter-cursor 0.7s step-end infinite;
+        }
+        @keyframes typewrite {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .typewriter-done {
+            border-right: none;
         }
     </style>
 </head>
@@ -44,97 +62,159 @@
     
     <!-- Background visual -->
     <div class="fixed inset-0 z-0 overflow-hidden">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeb5kAkxIyUN62jLxRFeJHOTpbDchAK7asgBUxBj7xrhE1JkTzzYZ6N-V3r5FPMVTwWd4xfhQFFwqQfuYuM9eMzR6Kk1G7vMM959GOzW2CUQHalNWRlsurWIn0yicAsIp7HiQ1mGPxy0ipbPONSBtZewNwisca1oC5Sp6vGGTIKs3ULiPyQybrU9hFKVqAwsYg3AJ8__vP_d9Rv5VoXkEtKvzqhd2DrHh1jE8n141WQPg-E2Y2mvo8K3449Z79AndHn49bOtAjyTY" alt="Neon Gallery background" class="w-full h-full object-cover opacity-40 brightness-50 mix-blend-screen scale-105" />
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeb5kAkxIyUN62jLxRFeJHOTpbDchAK7asgBUxBj7xrhE1JkTzzYZ6N-V3r5FPMVTwWd4xfhQFFwqQfuYuM9eMzR6Kk1G7vMM959GOzW2CUQHalNWRlsurWIn0yicAsIp7HiQ1mGPxy0ipbPONSBtZewNwisca1oC5Sp6vGGTIKs3ULiPyQybrU9hFKVqAwsYg3AJ8__vP_d9Rv5VoXkEtKvzqhd2DrHh1jE8n141WQPg-E2Y2mvo8K3449Z79AndHn49bOtAjyTY" alt="Background" class="w-full h-full object-cover opacity-40 brightness-50 mix-blend-screen scale-105" />
         <div class="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-zinc-950/80 to-violet-900/20"></div>
     </div>
 
     <!-- Auth Container -->
-    <main class="relative z-10 m-auto w-full max-w-[1000px] p-4 md:p-8">
+    <main class="relative z-10 m-auto w-full max-w-[900px] p-4 md:p-8">
         <div class="glass-card rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden shadow-violet-900/20">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <!-- Branding Side -->
-                <div class="hidden md:flex flex-col justify-between p-12 lg:p-16 border-r border-white/5 bg-zinc-950/40 relative">
+                <div class="hidden md:flex flex-col justify-between p-10 lg:p-12 border-r border-white/5 bg-zinc-950/40 relative">
                     <div class="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent"></div>
                     <div class="relative">
-                        <h1 class="font-headline font-black text-3xl tracking-tight text-white mb-2">ProVenue</h1>
-                        <p class="text-zinc-400 font-medium">Digital immersive experiences.</p>
-                    </div>
-                    
-                    <div class="relative mt-20">
-                        <div class="inline-flex items-center gap-2 bg-violet-500/20 border border-violet-500/30 rounded-full px-4 py-1.5 mb-6">
-                            <span class="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse"></span>
-                            <span class="text-[10px] font-bold tracking-widest uppercase text-violet-300">Secure Access</span>
-                        </div>
-                        <h2 class="font-headline text-4xl text-white font-extrabold leading-tight mb-4">Enter the <br/><span class="text-gradient">Void Layers.</span></h2>
+                        <h1 id="provenueText" class="font-headline font-black text-3xl tracking-tight text-violet-400 mb-3 typewriter-text">ProVenue</h1>
                         <p class="text-zinc-400 text-sm leading-relaxed max-w-xs">
-                            Manage your digital tickets or oversee your hosted events. Access control is strictly monitored.
+                            Create, manage, and track your events effortlessly. One platform for organizers and attendees.
                         </p>
                     </div>
                 </div>
 
                 <!-- Form Side -->
-                <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-zinc-950/80">
+                <div class="p-6 md:p-8 lg:p-10 flex flex-col justify-center bg-zinc-950/80">
                     <!-- Tabs -->
-                    <div class="flex gap-6 mb-10 border-b border-zinc-800 pb-px">
-                        <button class="font-headline text-lg font-bold text-white border-b-2 border-violet-500 pb-3 -mb-px">Sign In</button>
-                        <button class="font-headline text-lg font-bold text-zinc-500 hover:text-zinc-300 transition-colors pb-3">Create Account</button>
+                    <div class="flex gap-5 mb-6 border-b border-zinc-800 pb-px">
+                        <button id="tabSignIn" onclick="switchAuthTab('signin')" class="font-headline text-base font-bold text-white border-b-2 border-violet-500 pb-2.5 -mb-px">Sign In</button>
+                        <button id="tabCreateAccount" onclick="switchAuthTab('signup')" class="font-headline text-base font-bold text-zinc-500 hover:text-zinc-300 transition-colors pb-2.5">Create Account</button>
                     </div>
 
-                    <form class="space-y-6">
+                    <!-- ===== SIGN IN FORM ===== -->
+                    <form id="signinForm" class="space-y-4">
                         <!-- Role Selector -->
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <label class="cursor-pointer relative overflow-hidden rounded-xl border-2 border-violet-500 bg-violet-500/10 p-4 transition-all">
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <label class="cursor-pointer relative overflow-hidden rounded-xl border-2 border-violet-500 bg-violet-500/10 p-3 transition-all">
                                 <input type="radio" name="role" value="attendee" class="sr-only" checked />
-                                <div class="flex flex-col items-center gap-2 text-center">
-                                    <span class="material-symbols-outlined text-violet-400">confirmation_number</span>
-                                    <span class="font-bold text-sm text-violet-100">Attendee</span>
+                                <div class="flex flex-col items-center gap-1.5 text-center">
+                                    <span class="material-symbols-outlined text-violet-400 text-[20px]">confirmation_number</span>
+                                    <span class="font-bold text-xs text-violet-100">Attendee</span>
                                 </div>
                             </label>
-                            <label class="cursor-pointer relative overflow-hidden rounded-xl border-2 border-zinc-800 bg-zinc-900/50 p-4 hover:border-zinc-700 transition-all">
+                            <label class="cursor-pointer relative overflow-hidden rounded-xl border-2 border-zinc-800 bg-zinc-900/50 p-3 hover:border-zinc-700 transition-all">
                                 <input type="radio" name="role" value="organizer" class="sr-only" />
-                                <div class="flex flex-col items-center gap-2 text-center">
-                                    <span class="material-symbols-outlined text-zinc-400">campaign</span>
-                                    <span class="font-bold text-sm text-zinc-400">Organizer</span>
+                                <div class="flex flex-col items-center gap-1.5 text-center">
+                                    <span class="material-symbols-outlined text-zinc-400 text-[20px]">campaign</span>
+                                    <span class="font-bold text-xs text-zinc-400">Organizer</span>
                                 </div>
                             </label>
                         </div>
 
                         <!-- Email -->
-                        <div class="space-y-2 group">
+                        <div class="space-y-1.5 group">
                             <label class="text-[10px] font-black tracking-widest text-violet-400">EMAIL ADDRESS</label>
                             <div class="relative">
-                                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors">alternate_email</span>
-                                <input type="email" placeholder="phantom@neon-gallery.art" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-4 pl-12 pr-4 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-medium" />
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">alternate_email</span>
+                                <input type="email" placeholder="your@email.com" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-medium" />
                             </div>
                         </div>
 
                         <!-- Password -->
-                        <div class="space-y-2 group pt-2">
+                        <div class="space-y-1.5 group">
                             <div class="flex justify-between items-center">
-                                <label class="text-[10px] font-black tracking-widest text-violet-400">SECURITY KEY</label>
+                                <label class="text-[10px] font-black tracking-widest text-violet-400">PASSWORD</label>
                                 <a href="#" class="text-xs text-zinc-500 hover:text-violet-400 font-bold transition-colors">Forgot?</a>
                             </div>
                             <div class="relative">
-                                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors">lock</span>
-                                <input type="password" placeholder="••••••••••••" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-4 pl-12 pr-4 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-bold tracking-widest" />
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">lock</span>
+                                <input type="password" placeholder="••••••••" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-bold tracking-widest" />
                             </div>
                         </div>
 
-                        <button type="submit" onclick="event.preventDefault(); const role = document.querySelector('input[name=\'role\']:checked').value; window.location.href = role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';" class="w-full mt-8 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-headline font-bold text-lg hover:shadow-[0_0_30px_rgba(72,0,178,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3">
-                            Authenticate <span class="material-symbols-outlined text-sm pt-0.5">login</span>
+                        <button type="submit" onclick="handleSignIn(event)" class="w-full mt-4 py-2.5 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-headline font-bold text-sm hover:shadow-[0_0_30px_rgba(72,0,178,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                            Sign In <span class="material-symbols-outlined text-sm">login</span>
+                        </button>
+                    </form>
+
+                    <!-- ===== SIGN UP FORM ===== -->
+                    <form id="signupForm" class="space-y-4 hidden">
+                        <!-- Role Selector -->
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <label class="cursor-pointer relative overflow-hidden rounded-xl border-2 border-violet-500 bg-violet-500/10 p-3 transition-all">
+                                <input type="radio" name="signupRole" value="attendee" class="sr-only" checked />
+                                <div class="flex flex-col items-center gap-1.5 text-center">
+                                    <span class="material-symbols-outlined text-violet-400 text-[20px]">confirmation_number</span>
+                                    <span class="font-bold text-xs text-violet-100">Attendee</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer relative overflow-hidden rounded-xl border-2 border-zinc-800 bg-zinc-900/50 p-3 hover:border-zinc-700 transition-all">
+                                <input type="radio" name="signupRole" value="organizer" class="sr-only" />
+                                <div class="flex flex-col items-center gap-1.5 text-center">
+                                    <span class="material-symbols-outlined text-zinc-400 text-[20px]">campaign</span>
+                                    <span class="font-bold text-xs text-zinc-400">Organizer</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Full Name -->
+                        <div class="space-y-1.5 group">
+                            <label class="text-[10px] font-black tracking-widest text-violet-400">FULL NAME</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">person</span>
+                                <input type="text" placeholder="Your full name" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-medium" />
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="space-y-1.5 group">
+                            <label class="text-[10px] font-black tracking-widest text-violet-400">EMAIL ADDRESS</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">alternate_email</span>
+                                <input type="email" placeholder="your@email.com" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-medium" />
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="space-y-1.5 group">
+                            <label class="text-[10px] font-black tracking-widest text-violet-400">PHONE NO</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">phone</span>
+                                <input type="tel" placeholder="+92 300 1234567" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-medium" />
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="space-y-1.5 group">
+                            <label class="text-[10px] font-black tracking-widest text-violet-400">PASSWORD</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">lock</span>
+                                <input type="password" placeholder="••••••••" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-bold tracking-widest" />
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="space-y-1.5 group">
+                            <label class="text-[10px] font-black tracking-widest text-violet-400">CONFIRM PASSWORD</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 group-focus-within:text-violet-400 transition-colors text-[18px]">lock</span>
+                                <input type="password" placeholder="••••••••" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all font-bold tracking-widest" />
+                            </div>
+                        </div>
+
+                        <button type="submit" onclick="handleSignUp(event)" class="w-full mt-4 py-2.5 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-headline font-bold text-sm hover:shadow-[0_0_30px_rgba(72,0,178,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                            Create Account <span class="material-symbols-outlined text-sm">person_add</span>
                         </button>
                     </form>
 
                     <!-- OR divider -->
-                    <div class="flex items-center gap-4 my-8">
+                    <div class="flex items-center gap-4 my-5">
                         <div class="h-px bg-zinc-800 flex-1"></div>
-                        <span class="text-xs font-bold text-zinc-600 uppercase tracking-widest">or continue via</span>
+                        <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">or</span>
                         <div class="h-px bg-zinc-800 flex-1"></div>
                     </div>
 
-                    <button class="w-full bg-white text-zinc-900 font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-zinc-200 transition-colors">
-                        <img src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA" alt="Google" class="w-5 h-5"/>
-                        Google Protocol
+                    <button class="w-full bg-white text-zinc-900 font-bold py-2.5 rounded-xl flex items-center justify-center gap-3 hover:bg-zinc-200 transition-colors text-sm">
+                        <img src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA" alt="Google" class="w-4 h-4"/>
+                        Continue with Google
                     </button>
                 </div>
             </div>
@@ -142,32 +222,84 @@
     </main>
 
     <script>
-        // Simple logic to style the active role card
-        const roleRadios = document.querySelectorAll('input[name="role"]');
-        roleRadios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                roleRadios.forEach(r => {
-                    const label = r.closest('label');
-                    const icon = label.querySelector('.material-symbols-outlined');
-                    const text = label.querySelector('span:last-child');
-                    
-                    if(r.checked) {
-                        label.classList.remove('border-zinc-800', 'bg-zinc-900/50');
-                        label.classList.add('border-violet-500', 'bg-violet-500/10');
-                        icon.classList.remove('text-zinc-400');
-                        icon.classList.add('text-violet-400');
-                        text.classList.remove('text-zinc-400');
-                        text.classList.add('text-violet-100');
-                    } else {
-                        label.classList.add('border-zinc-800', 'bg-zinc-900/50');
-                        label.classList.remove('border-violet-500', 'bg-violet-500/10');
-                        icon.classList.add('text-zinc-400');
-                        icon.classList.remove('text-violet-400');
-                        text.classList.add('text-zinc-400');
-                        text.classList.remove('text-violet-100');
-                    }
+        // Sign In handler
+        function handleSignIn(e) {
+            e.preventDefault();
+            const role = document.querySelector('input[name="role"]:checked').value;
+            window.location.href = role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';
+        }
+
+        // Sign Up handler
+        function handleSignUp(e) {
+            e.preventDefault();
+            const role = document.querySelector('input[name="signupRole"]:checked').value;
+            window.location.href = role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';
+        }
+
+        // Tab switching between Sign In and Create Account
+        function switchAuthTab(tab) {
+            const signinForm = document.getElementById('signinForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabSignIn = document.getElementById('tabSignIn');
+            const tabCreateAccount = document.getElementById('tabCreateAccount');
+
+            if (tab === 'signin') {
+                signinForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                tabSignIn.classList.add('text-white', 'border-b-2', 'border-violet-500', '-mb-px');
+                tabSignIn.classList.remove('text-zinc-500');
+                tabCreateAccount.classList.remove('text-white', 'border-b-2', 'border-violet-500', '-mb-px');
+                tabCreateAccount.classList.add('text-zinc-500');
+            } else {
+                signinForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                tabCreateAccount.classList.add('text-white', 'border-b-2', 'border-violet-500', '-mb-px');
+                tabCreateAccount.classList.remove('text-zinc-500');
+                tabSignIn.classList.remove('text-white', 'border-b-2', 'border-violet-500', '-mb-px');
+                tabSignIn.classList.add('text-zinc-500');
+            }
+        }
+
+        // Role card styling
+        function setupRoleCards(radioName) {
+            const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    radios.forEach(r => {
+                        const label = r.closest('label');
+                        const icon = label.querySelector('.material-symbols-outlined');
+                        const text = label.querySelector('span:last-child');
+                        if (r.checked) {
+                            label.classList.remove('border-zinc-800', 'bg-zinc-900/50');
+                            label.classList.add('border-violet-500', 'bg-violet-500/10');
+                            icon.classList.remove('text-zinc-400');
+                            icon.classList.add('text-violet-400');
+                            text.classList.remove('text-zinc-400');
+                            text.classList.add('text-violet-100');
+                        } else {
+                            label.classList.add('border-zinc-800', 'bg-zinc-900/50');
+                            label.classList.remove('border-violet-500', 'bg-violet-500/10');
+                            icon.classList.add('text-zinc-400');
+                            icon.classList.remove('text-violet-400');
+                            text.classList.add('text-zinc-400');
+                            text.classList.remove('text-violet-100');
+                        }
+                    });
                 });
             });
+        }
+        setupRoleCards('role');
+        setupRoleCards('signupRole');
+
+        // Typewriter animation
+        window.addEventListener('load', () => {
+            const el = document.getElementById('provenueText');
+            if (el) {
+                setTimeout(() => {
+                    el.classList.add('typing');
+                    setTimeout(() => el.classList.add('typewriter-done'), 1000);
+                }, 300);
+            }
         });
     </script>
 </body>
