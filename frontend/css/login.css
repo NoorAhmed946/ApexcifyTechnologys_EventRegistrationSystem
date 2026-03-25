@@ -1,0 +1,6 @@
+/* ==================== LOGIN PAGE STYLES ==================== */
+
+/* Login-specific typewriter needs inline-block for the branding panel */
+.typewriter-text {
+    display: inline-block;
+}

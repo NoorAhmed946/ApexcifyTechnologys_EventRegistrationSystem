@@ -1,0 +1,26 @@
+/* ==================== DASHBOARD (ATTENDEE) STYLES ==================== */
+
+/* Tab active styles */
+.tab-btn.active {
+    color: #a78bfa;
+    border-bottom: 2px solid #a78bfa;
+}
+
+/* Event card hover overlay */
+.event-card .card-overlay {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.event-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.event-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(72, 0, 178, 0.15);
+}

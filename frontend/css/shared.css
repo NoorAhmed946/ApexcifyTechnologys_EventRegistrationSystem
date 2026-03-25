@@ -1,0 +1,92 @@
+/* ==================== SHARED STYLES ==================== */
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Glass Effects */
+.glass-card {
+    background: rgba(9, 9, 11, 0.7);
+    backdrop-filter: blur(40px);
+}
+
+.glass-panel {
+    background: rgba(24, 24, 27, 0.7);
+    backdrop-filter: blur(20px);
+}
+
+/* Sidebar transitions */
+#sidebar {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sidebar .sidebar-label {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+#sidebar.collapsed .sidebar-label {
+    opacity: 0;
+    transform: translateX(-8px);
+    pointer-events: none;
+    width: 0;
+    overflow: hidden;
+}
+
+#sidebar.collapsed .stats-panel {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    transition: all 0.25s ease;
+}
+
+#sidebar .stats-panel {
+    transition: all 0.3s ease 0.1s;
+    max-height: 200px;
+    opacity: 1;
+}
+
+#mainContent {
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sidebar.collapsed .subtitle-text {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+#sidebar .subtitle-text {
+    transition: all 0.3s ease 0.1s;
+}
+
+/* Typewriter animation */
+@keyframes typewriter-cursor {
+    0%, 100% { border-color: #a78bfa; }
+    50% { border-color: transparent; }
+}
+
+.typewriter-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #a78bfa;
+    width: 0;
+    animation: typewriter-cursor 0.7s step-end infinite;
+}
+
+.typewriter-text.typing {
+    animation: typewrite 0.8s steps(8) forwards, typewriter-cursor 0.7s step-end infinite;
+}
+
+@keyframes typewrite {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.typewriter-done {
+    border-right: none;
+}
