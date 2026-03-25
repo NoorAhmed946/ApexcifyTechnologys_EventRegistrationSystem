@@ -1,267 +1,558 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>The Management Layer | The Neon Gallery</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-tertiary-container": "#1ee0cc",
-              "on-secondary": "#ffffff",
-              "surface-container-high": "#ebe7e7",
-              "secondary-fixed-dim": "#ffb3b5",
-              "secondary-container": "#e51245",
-              "on-primary-fixed": "#22005d",
-              "on-primary-container": "#d0beff",
-              "on-primary-fixed-variant": "#5300cd",
-              "secondary": "#ba0034",
-              "on-secondary-container": "#fffbff",
-              "surface-container": "#f0edec",
-              "on-error": "#ffffff",
-              "on-error-container": "#93000a",
-              "inverse-on-surface": "#f3f0ef",
-              "primary": "#4800b2",
-              "on-primary": "#ffffff",
-              "inverse-surface": "#313030",
-              "on-tertiary-fixed-variant": "#005048",
-              "error": "#ba1a1a",
-              "primary-container": "#6200ee",
-              "tertiary": "#00453e",
-              "on-secondary-fixed-variant": "#920027",
-              "tertiary-container": "#005f56",
-              "on-tertiary": "#ffffff",
-              "tertiary-fixed": "#4ffbe6",
-              "surface": "#fcf9f8",
-              "inverse-primary": "#cfbdff",
-              "surface-container-low": "#f6f3f2",
-              "surface-variant": "#e5e2e1",
-              "primary-fixed-dim": "#cfbdff",
-              "tertiary-fixed-dim": "#17deca",
-              "surface-bright": "#fcf9f8",
-              "secondary-fixed": "#ffdada",
-              "surface-tint": "#6d23f9",
-              "primary-fixed": "#e8ddff",
-              "surface-container-highest": "#e5e2e1",
-              "error-container": "#ffdad6",
-              "on-surface": "#1c1b1b",
-              "surface-dim": "#dcd9d9",
-              "on-tertiary-fixed": "#00201c",
-              "outline": "#7a7488",
-              "on-secondary-fixed": "#40000c",
-              "surface-container-lowest": "#ffffff",
-              "on-surface-variant": "#494456",
-              "background": "#fcf9f8",
-              "outline-variant": "#cbc3d9",
-              "on-background": "#1c1b1b",
-              "zinc-950": "#09090b",
-              "zinc-900": "#18181b",
-              "zinc-800": "#27272a",
-              "zinc-400": "#a1a1aa",
-              "zinc-500": "#71717a"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | ProVenue</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4800b2",
+                        "primary-container": "#6200ee",
+                        "secondary": "#ba0034",
+                        "zinc-950": "#09090b",
+                        "zinc-900": "#18181b",
+                        "zinc-800": "#27272a"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                },
             },
-            fontFamily: {
-              "headline": ["Epilogue"],
-              "body": ["Manrope"],
-              "label": ["Manrope"]
-            },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
-          },
-        },
-      }
+        }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
         .glass-panel {
-            background: rgba(9, 9, 11, 0.8);
+            background: rgba(24, 24, 27, 0.7);
             backdrop-filter: blur(20px);
         }
+
+        /* Sidebar transitions */
+        #sidebar {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #sidebar .sidebar-label {
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        #sidebar.collapsed .sidebar-label {
+            opacity: 0;
+            transform: translateX(-8px);
+            pointer-events: none;
+            width: 0;
+            overflow: hidden;
+        }
+
+        #sidebar.collapsed .stats-panel {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            transition: all 0.25s ease;
+        }
+
+        #sidebar .stats-panel {
+            transition: all 0.3s ease 0.1s;
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        #mainContent {
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #sidebar.collapsed .subtitle-text {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        #sidebar .subtitle-text {
+            transition: all 0.3s ease 0.1s;
+        }
+
+        /* Tab active styles */
+        .tab-btn.active {
+            color: #a78bfa;
+            border-bottom: 2px solid #a78bfa;
+        }
+
+        /* Event card hover overlay */
+        .event-card .card-overlay {
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .event-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .event-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(72, 0, 178, 0.15);
+        }
+
+        /* Typewriter animation */
+        @keyframes typewriter-cursor {
+            0%, 100% { border-color: #a78bfa; }
+            50% { border-color: transparent; }
+        }
+        .typewriter-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #a78bfa;
+            width: 0;
+            animation: typewriter-cursor 0.7s step-end infinite;
+        }
+        .typewriter-text.typing {
+            animation: typewrite 0.8s steps(8) forwards, typewriter-cursor 0.7s step-end infinite;
+        }
+        @keyframes typewrite {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .typewriter-done {
+            border-right: none;
+        }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-zinc-950 text-zinc-100 font-body min-h-screen selection:bg-violet-500/30">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-xl shadow-[0px_4px_32px_rgba(72,0,178,0.04)]">
-<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-<div class="flex items-center gap-4">
-<button class="material-symbols-outlined text-zinc-100 p-2 hover:bg-zinc-800/50 rounded-lg transition-all duration-300">menu</button>
-<h1 class="font-headline tracking-tight font-bold text-2xl text-violet-400">ProVenue</h1>
-</div>
-<div class="flex items-center gap-6">
-<nav class="hidden md:flex gap-8">
-<a class="font-headline text-zinc-400 hover:text-zinc-100 transition-colors" href="index.html">Discover</a>
-<a class="font-headline text-violet-400 font-bold border-b-2 border-violet-500" href="dashboard.html">My Tickets</a>
-</nav>
-<a href="login.html" class="w-10 h-10 rounded-full bg-primary-container overflow-hidden border-2 border-violet-500/30 block hover:opacity-80 transition-opacity">
-<img alt="User avatar" data-alt="close-up portrait of a young professional with short hair and glasses wearing a dark turtleneck against a soft violet background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY0BXMYkcAsuiTboz6-s4rNMXDAg9Hxge8bjqi46u1Jk1PY042jkT4aQ8EnpuMpHPT88abqiDWOZpKHqXbbMkHATFmjJhCJh8Yu7VckG-zIjcVDe2dB-AOelKYTVQ_lZn2AORdPXEnJsGsvt0KU_l5w8HyHUsrifMVV1ZvMHh4qG5xVWsNAR63N6cEKTKT2TrfqosxlIzSip2qq7qpIJkUirHkCycgjxeJox_txWsdu_P3q_fFwZPtVVtlo3cQtU1Qr1XY3i-zbM0"/>
-</a>
-</div>
-</div>
-</header>
-<main class="pt-28 pb-32 px-6 max-w-7xl mx-auto">
-<!-- Header Section -->
-<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div>
-<span class="font-label text-violet-500 uppercase tracking-[0.2em] mb-2 block">The Management Layer</span>
-<h2 class="font-headline text-5xl font-black text-white leading-tight">Your Reserved<br/><span class="text-zinc-500 italic">Experiences.</span></h2>
-</div>
-<div class="flex bg-zinc-900 p-1.5 rounded-full border border-zinc-800">
-<button class="px-8 py-3 rounded-full bg-violet-600 text-white font-bold transition-all shadow-lg shadow-violet-900/20">Upcoming Events</button>
-<button class="px-8 py-3 rounded-full text-zinc-400 hover:text-white transition-all">Past Events</button>
-</div>
-</div>
-<!-- Dashboard Content: Bento Grid Layout -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-<!-- Main Featured Event Card -->
-<div class="md:col-span-8 group relative overflow-hidden rounded-[2rem] bg-zinc-900 border border-zinc-800/50">
-<div class="aspect-[16/9] overflow-hidden">
-<img alt="Concert Crowd" class="w-full h-full object-cover grayscale-[0.5] group-hover:scale-105 transition-transform duration-700" data-alt="Wide angle shot of a vibrant neon-lit concert hall with a crowd of people silhouettes and intense purple laser beams cutting through haze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8"/>
-</div>
-<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
-<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
-<div>
-<div class="flex items-center gap-2 mb-3">
-<span class="bg-violet-600/20 text-violet-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-violet-500/30">Exclusive Access</span>
-<span class="text-zinc-400 text-xs font-medium">Oct 24 • 9:00 PM</span>
-</div>
-<h3 class="font-headline text-3xl font-bold text-white mb-2">Midnight Synthwave Session</h3>
-<p class="text-zinc-400 max-w-md">Lumina District • Warehouse 7</p>
-</div>
-<div class="relative">
-<!-- Open Manage Menu Instance -->
-<div class="absolute bottom-full right-0 mb-4 w-64 glass-panel rounded-3xl p-3 border border-zinc-800 shadow-2xl z-20">
-<div class="flex flex-col gap-1">
-<button class="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-white/10 text-zinc-100 transition-all">
-<span class="material-symbols-outlined text-violet-400">qr_code_2</span>
-<span class="font-medium">Download Ticket (QR)</span>
-</button>
-<button class="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-white/10 text-zinc-100 transition-all">
-<span class="material-symbols-outlined text-zinc-400">share</span>
-<span class="font-medium">Transfer Ticket</span>
-</button>
-<div class="h-[1px] bg-zinc-800 my-1 mx-2"></div>
-<button onclick="if(confirm('Cancel registration?')) this.closest('.md\\:col-span-8')?.remove();" class="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-500/10 text-red-400 transition-all">
-<span class="material-symbols-outlined">cancel</span>
-<span class="font-medium">Cancel Registration</span>
-</button>
-</div>
-</div>
-<button class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all">
-<span class="material-symbols-outlined">more_horiz</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Side Card: Quick Action Stats -->
-<div class="md:col-span-4 flex flex-col gap-6">
-<div class="bg-violet-600 rounded-[2rem] p-8 text-white relative overflow-hidden group">
-<div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full blur-3xl transition-transform group-hover:scale-150 duration-700"></div>
-<span class="font-label uppercase tracking-widest text-violet-200 block mb-4">Total Tokens</span>
-<div class="text-6xl font-black font-headline mb-6 tracking-tighter">1,240</div>
-<button class="w-full bg-white text-violet-600 py-4 rounded-full font-bold hover:bg-violet-50 transition-all">Redeem Rewards</button>
-</div>
-<div class="bg-zinc-900 border border-zinc-800 rounded-[2rem] p-8 flex flex-col justify-between flex-grow">
-<div>
-<span class="font-label uppercase tracking-widest text-zinc-500 block mb-4">Next Check-in</span>
-<div class="flex items-center gap-4">
-<div class="w-14 h-14 bg-zinc-800 rounded-2xl flex flex-col items-center justify-center border border-zinc-700">
-<span class="text-xs font-bold text-zinc-500 leading-none">OCT</span>
-<span class="text-xl font-black text-white leading-none">24</span>
-</div>
-<div>
-<h4 class="font-bold text-white">Cyberpunk Expo</h4>
-<p class="text-sm text-zinc-400">Arrive by 18:30</p>
-</div>
-</div>
-</div>
-<div class="mt-8 flex justify-center">
-<div class="p-4 bg-white rounded-2xl">
-<img alt="Ticket QR" data-alt="minimalist black and white QR code isolated on a clean white square background with rounded corners" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrgi9QwaqrcNnVZu3bXBtRG_hhN0ZR4bR0ACxv681YQWx_gNl4J4fDx6-yF4pHXN8c4_u8vDYUuhedoS1TIuktiCq_XTZDY8Xfuqybauzpe0x6xROHOF6SAatA_gTH9gvudq7DIA1cQnjIbmXAiRyUTV85-FGvCV5Nyitoi_9sWJvKRdw08y7c_8lSXc_QjDyA_j4EWeO2iE1tL7AHh0KgQyRghLyqWUYntVuy_12NPET9aNLLgxxh5OcM1qV5M21DbjGt0_qEpgQ"/>
-</div>
-</div>
-</div>
-</div>
-<!-- Upcoming List Section -->
-<div class="md:col-span-12 mt-6">
-<h3 class="font-headline text-2xl font-bold mb-8">Additional Bookings</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- Card 2 -->
-<div class="bg-zinc-900/50 border border-zinc-800/50 rounded-[2rem] p-6 hover:bg-zinc-900 transition-all group">
-<div class="aspect-square rounded-2xl overflow-hidden mb-6">
-<img alt="Abstract Art" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Modern digital art featuring glowing geometric shapes and fluid purple and blue gradients in a dark void" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDynVH4NtyfAyjZy_TWBZYKU9pM7EvNHE_UQfpwxyhZpLH8iJL8clYBYhZWqBK2fBgA6RZDDb3GHaBbtz5NmOrkCODseYkKfs-_rfVcd5YLaxi06YaIIaZGhJAtsHEBBeN9KbUkzinRkkm22cASImQZphUoRpjXYJ3lLahLZh-AUZQnBr4yV6ZhVL7UVo3RzWz-qyfjAAIiw-38ZBUaGpdxYK92t6Wa7bYVOaWCd79E0hgHof8vKvOTw7Gar9q6OCp4rgujtTGwX74"/>
-</div>
-<div class="flex justify-between items-start mb-4">
-<div>
-<h4 class="font-bold text-lg text-white">Neon Sculpting Workshop</h4>
-<p class="text-zinc-500 text-sm">Nov 02 • Art Hub</p>
-</div>
-<button class="text-zinc-500 hover:text-white transition-colors">
-<span class="material-symbols-outlined">more_vert</span>
-</button>
-</div>
-<div class="flex items-center justify-between pt-4 border-t border-zinc-800">
-<span class="text-xs font-bold text-violet-500">GENERAL ADMISSION</span>
-<span class="text-xs text-zinc-500">Order #8821</span>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="bg-zinc-900/50 border border-zinc-800/50 rounded-[2rem] p-6 hover:bg-zinc-900 transition-all group">
-<div class="aspect-square rounded-2xl overflow-hidden mb-6">
-<img alt="Art Exhibition" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="atmospheric photo of a dark gallery room with glowing blue digital displays and silhouettes of viewers observing art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMoGxo1egxBP12IMedQEWflI08FHJlMgiCuDD8iLrbg4Hv1Hwe-Brg8CKgE7zDEforXNXOo5nvG-25ncrOFT0lImnDIMmJHrDM4UDMXM2RteWSk86xZd2EUanrnwYE3KBKVtvID_QqlPXV6drMryx7iP07h41M66oqBpFC4kamcuByJxylmBsycrhjJWNQyjWk3GDZ5yuKnmttiGPr9HY9BQyowoL_sAliW4zVsLnDkHwmanN8rjSjbj1MDU_77ZptnPxQUnk_F8"/>
-</div>
-<div class="flex justify-between items-start mb-4">
-<div>
-<h4 class="font-bold text-lg text-white">Digital Aura Exhibit</h4>
-<p class="text-zinc-500 text-sm">Nov 15 • Grand Gallery</p>
-</div>
-<button class="text-zinc-500 hover:text-white transition-colors">
-<span class="material-symbols-outlined">more_vert</span>
-</button>
-</div>
-<div class="flex items-center justify-between pt-4 border-t border-zinc-800">
-<span class="text-xs font-bold text-violet-500">VIP PASS</span>
-<span class="text-xs text-zinc-500">Order #9042</span>
-</div>
-</div>
-<!-- Empty State Placeholder (Simulated Past Events Toggle) -->
-<div class="bg-zinc-950 border-2 border-dashed border-zinc-800 rounded-[2rem] p-6 flex flex-col items-center justify-center text-center opacity-60">
-<div class="w-20 h-20 bg-zinc-900 rounded-full flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-zinc-700 text-4xl">calendar_add_on</span>
-</div>
-<h4 class="font-bold text-zinc-400">Discover More</h4>
-<p class="text-zinc-600 text-sm mb-6 px-4">Ready for your next neon-lit adventure?</p>
-<button onclick="window.location.href='index.html'" class="text-xs font-bold uppercase tracking-widest text-white px-6 py-3 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-all">Browse Events</button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-zinc-950/90 backdrop-blur-2xl px-4 pb-6 pt-3 flex justify-around items-center rounded-t-3xl border-t border-zinc-800/50 shadow-[0_-8px_40px_rgba(72,0,178,0.1)]">
-<div onclick="window.location.href='index.html'" class="flex flex-col items-center justify-center text-zinc-500 px-5 py-2 cursor-pointer relative z-10">
-<span class="material-symbols-outlined mb-1">explore</span>
-<span class="font-label text-[10px] uppercase tracking-[0.05em]">Discover</span>
-</div>
-<div onclick="window.location.href='index.html#events'" class="flex flex-col items-center justify-center text-zinc-500 px-5 py-2 cursor-pointer relative z-10">
-<span class="material-symbols-outlined mb-1">event_available</span>
-<span class="font-label text-[10px] uppercase tracking-[0.05em]">Events</span>
-</div>
-<div onclick="window.location.href='login.html'" class="flex flex-col items-center justify-center bg-violet-950/40 text-violet-400 rounded-2xl px-5 py-2 cursor-pointer relative z-10">
-<span class="material-symbols-outlined mb-1">account_circle</span>
-<span class="font-label text-[10px] uppercase tracking-[0.05em]">Profile</span>
-</div>
-</nav>
-</body></html>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 font-body min-h-screen selection:bg-violet-500/30 flex">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar"
+        class="collapsed w-[72px] fixed h-full border-r border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl z-40 hidden lg:flex flex-col">
+        <!-- Header with toggle -->
+        <div class="p-4 flex items-center gap-3">
+            <button id="sidebarToggle"
+                class="text-zinc-400 hover:text-violet-400 p-1 rounded-lg hover:bg-zinc-800/50 transition-all flex-shrink-0"
+                title="Toggle Sidebar">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <h1 class="sidebar-label font-headline font-black text-lg text-violet-400 cursor-pointer"
+                onclick="window.location.href='dashboard.html'">ProVenue</h1>
+        </div>
+        <span class="subtitle-text text-[10px] font-bold tracking-widest text-zinc-500 uppercase px-4 -mt-1 mb-2">Attendee Portal</span>
+
+        <nav class="flex-1 p-2 space-y-1">
+            <button onclick="switchTab('browse')"
+                class="sidebar-nav-btn flex items-center gap-3 bg-violet-600/10 text-violet-400 font-bold px-3 py-3 rounded-xl border border-violet-500/20 w-full text-left"
+                title="Browse Events" data-tab="browse">
+                <span class="material-symbols-outlined flex-shrink-0">explore</span>
+                <span class="sidebar-label">Browse Events</span>
+            </button>
+            <button onclick="switchTab('registered')"
+                class="sidebar-nav-btn flex items-center gap-3 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 font-medium px-3 py-3 rounded-xl transition-all w-full text-left"
+                title="My Registrations" data-tab="registered">
+                <span class="material-symbols-outlined flex-shrink-0">confirmation_number</span>
+                <span class="sidebar-label">My Registrations</span>
+            </button>
+        </nav>
+
+        <div class="p-2 border-t border-zinc-800/50">
+            <button onclick="window.location.href='login.html'"
+                class="flex items-center gap-3 text-zinc-500 hover:text-red-400 px-3 py-3 w-full rounded-xl transition-all font-bold"
+                title="Logout">
+                <span class="material-symbols-outlined flex-shrink-0">logout</span>
+                <span class="sidebar-label">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="flex-1 lg:ml-[72px] pt-8 px-6 lg:px-10 pb-20 max-w-[1600px] mx-auto w-full">
+
+        <!-- Header -->
+        <header class="mb-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h1 id="provenueText" class="font-headline font-black text-4xl text-violet-400 typewriter-text mb-1">ProVenue</h1>
+                    <h2 class="font-headline text-3xl font-bold">Welcome</h2>
+                    <p class="text-zinc-500">Discover events and manage your registrations.</p>
+                </div>
+            </div>
+            <div class="relative max-w-2xl">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 text-sm">search</span>
+                <input type="text" id="searchInput" placeholder="Search events..."
+                    class="w-full pl-9 pr-4 py-2.5 bg-transparent border border-zinc-800 rounded-lg text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 transition-all"
+                    onkeyup="searchEvents()">
+            </div>
+        </header>
+
+        <!-- ==================== BROWSE EVENTS TAB ==================== -->
+        <div id="browseTab">
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="font-headline text-2xl font-bold">Available Events</h3>
+            </div>
+
+            <div id="eventsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="event-card glass-panel rounded-2xl border border-zinc-800/80 overflow-hidden relative cursor-pointer" data-event="1" onclick="openDetails(1)">
+                    <div class="relative">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8"
+                            class="w-full h-44 object-cover" alt="Event" />
+                        <!-- Hover overlay -->
+                        <div class="card-overlay absolute inset-0 bg-zinc-950/70 backdrop-blur-sm flex items-center justify-center">
+                            <span class="bg-violet-600 text-white font-bold py-2.5 px-6 rounded-xl flex items-center gap-2 shadow-lg">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View Details
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-headline font-bold text-white text-lg">Midnight Synthwave Session</h4>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="event-card glass-panel rounded-2xl border border-zinc-800/80 overflow-hidden relative cursor-pointer" data-event="2" onclick="openDetails(2)">
+                    <div class="relative">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMoGxo1egxBP12IMedQEWflI08FHJlMgiCuDD8iLrbg4Hv1Hwe-Brg8CKgE7zDEforXNXOo5nvG-25ncrOFT0lImnDIMmJHrDM4UDMXM2RteWSk86xZd2EUanrnwYE3KBKVtvID_QqlPXV6drMryx7iP07h41M66oqBpFC4kamcuByJxylmBsycrhjJWNQyjWk3GDZ5yuKnmttiGPr9HY9BQyowoL_sAliW4zVsLnDkHwmanN8rjSjbj1MDU_77ZptnPxQUnk_F8"
+                            class="w-full h-44 object-cover" alt="Event" />
+                        <!-- Hover overlay -->
+                        <div class="card-overlay absolute inset-0 bg-zinc-950/70 backdrop-blur-sm flex items-center justify-center">
+                            <span class="bg-violet-600 text-white font-bold py-2.5 px-6 rounded-xl flex items-center gap-2 shadow-lg">
+                                <span class="material-symbols-outlined text-sm">visibility</span>
+                                View Details
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-headline font-bold text-white text-lg">Digital Aura Exhibit</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MY REGISTRATIONS TAB ==================== -->
+        <div id="registeredTab" class="hidden">
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="font-headline text-2xl font-bold">My Registrations</h3>
+                <span id="regCount" class="text-sm text-zinc-500 font-bold">0 events</span>
+            </div>
+
+            <div id="registeredList" class="space-y-4">
+                <div class="text-center py-16">
+                    <span class="material-symbols-outlined text-zinc-700 text-6xl mb-4 block">event_busy</span>
+                    <p class="text-zinc-500 font-medium">You haven't registered for any events yet.</p>
+                    <button onclick="switchTab('browse')"
+                        class="mt-4 text-violet-400 font-bold hover:text-violet-300 transition-colors">Browse
+                        Events →</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== EVENT DETAILS MODAL ==================== -->
+    <div id="detailsModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm"
+            onclick="document.getElementById('detailsModal').classList.add('hidden')"></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-lg w-full relative shadow-2xl z-10 overflow-hidden">
+            <img id="detailImg" src="" alt="Event Banner" class="w-full h-48 object-cover" />
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="detailTitle" class="font-headline text-2xl font-bold"></h3>
+                    <button onclick="document.getElementById('detailsModal').classList.add('hidden')"
+                        class="text-zinc-400 hover:text-white transition-colors flex-shrink-0 ml-4">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center gap-3 text-zinc-400">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        <span id="detailLocation" class="text-sm"></span>
+                    </div>
+                    <div class="flex items-center gap-3 text-zinc-400">
+                        <span class="material-symbols-outlined text-sm">calendar_month</span>
+                        <span id="detailDate" class="text-sm"></span>
+                    </div>
+                    <div class="flex items-center gap-3 text-zinc-400">
+                        <span class="material-symbols-outlined text-sm">schedule</span>
+                        <span id="detailTime" class="text-sm"></span>
+                    </div>
+                    <div class="flex items-center gap-3 text-zinc-400">
+                        <span class="material-symbols-outlined text-sm">category</span>
+                        <span id="detailCategory" class="text-sm"></span>
+                    </div>
+                    <div class="flex items-center gap-3 text-zinc-400">
+                        <span class="material-symbols-outlined text-sm">group</span>
+                        <span id="detailSpots" class="text-sm"></span>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('detailsModal').classList.add('hidden'); openRegister(currentDetailId)"
+                    class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-violet-900/30">
+                    Register for this Event
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REGISTRATION FORM MODAL ==================== -->
+    <div id="registerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm"
+            onclick="document.getElementById('registerModal').classList.add('hidden')"></div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-md w-full relative shadow-2xl z-10">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-headline text-2xl font-bold">Register</h3>
+                <button onclick="document.getElementById('registerModal').classList.add('hidden')"
+                    class="text-zinc-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <p id="regEventName" class="text-violet-400 font-bold mb-6"></p>
+
+            <form id="registerForm" onsubmit="handleRegistration(event)" class="space-y-5">
+                <div>
+                    <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">FULL NAME</label>
+                    <input type="text" id="regName" required
+                        class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none"
+                        placeholder="Your full name">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">EMAIL</label>
+                    <input type="email" id="regEmail" required
+                        class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none"
+                        placeholder="you@example.com">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">PHONE (OPTIONAL)</label>
+                    <input type="tel" id="regPhone"
+                        class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none"
+                        placeholder="+1 234 567 890">
+                </div>
+                <div class="pt-4 flex justify-end gap-3 border-t border-zinc-800">
+                    <button type="button"
+                        onclick="document.getElementById('registerModal').classList.add('hidden')"
+                        class="px-6 py-3 font-bold text-zinc-400 hover:text-white transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-8 rounded-xl shadow-[0_0_20px_rgba(72,0,178,0.3)] hover:scale-[1.02] transition-all">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div
+        class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-800 rounded-full px-6 py-3 flex gap-8 shadow-2xl z-50">
+        <button onclick="switchTab('browse')" class="text-violet-400"><span
+                class="material-symbols-outlined">explore</span></button>
+        <button onclick="switchTab('registered')" class="text-zinc-500 hover:text-white"><span
+                class="material-symbols-outlined">confirmation_number</span></button>
+    </div>
+
+    <script>
+        // ==================== EVENT DATA ====================
+        const eventsData = {
+            1: {
+                title: 'Midnight Synthwave Session',
+                location: 'Warehouse 7',
+                category: 'Music',
+                date: 'Oct 24, 2024',
+                time: '9:00 PM',
+                spots: '150/1000',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8'
+            },
+            2: {
+                title: 'Digital Aura Exhibit',
+                location: 'Grand Gallery',
+                category: 'Digital Art',
+                date: 'Nov 15, 2024',
+                time: '10:00 AM',
+                spots: '225/500',
+                img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBfMoGxo1egxBP12IMedQEWflI08FHJlMgiCuDD8iLrbg4Hv1Hwe-Brg8CKgE7zDEforXNXOo5nvG-25ncrOFT0lImnDIMmJHrDM4UDMXM2RteWSk86xZd2EUanrnwYE3KBKVtvID_QqlPXV6drMryx7iP07h41M66oqBpFC4kamcuByJxylmBsycrhjJWNQyjWk3GDZ5yuKnmttiGPr9HY9BQyowoL_sAliW4zVsLnDkHwmanN8rjSjbj1MDU_77ZptnPxQUnk_F8'
+            }
+        };
+
+        let currentDetailId = null;
+        let registeredEvents = {};
+
+        // ==================== TAB SWITCHING ====================
+        function switchTab(tab) {
+            document.getElementById('browseTab').classList.toggle('hidden', tab !== 'browse');
+            document.getElementById('registeredTab').classList.toggle('hidden', tab !== 'registered');
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-nav-btn').forEach(btn => {
+                if (btn.dataset.tab === tab) {
+                    btn.className = btn.className.replace('text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 font-medium', 'bg-violet-600/10 text-violet-400 font-bold').replace('border-violet-500/20', '') + ' border border-violet-500/20';
+                } else {
+                    btn.className = btn.className.replace('bg-violet-600/10 text-violet-400 font-bold', 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/50 font-medium').replace(/\s*border\s+border-violet-500\/20/g, '');
+                }
+            });
+        }
+
+        // ==================== SEARCH ====================
+        function searchEvents() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('#eventsGrid .event-card');
+            cards.forEach(card => {
+                const titleEl = card.querySelector('.font-headline');
+                if (titleEl) {
+                    card.style.display = titleEl.textContent.toLowerCase().includes(query) ? '' : 'none';
+                }
+            });
+        }
+
+        // ==================== VIEW DETAILS ====================
+        function openDetails(id) {
+            const ev = eventsData[id];
+            if (!ev) return;
+            currentDetailId = id;
+            document.getElementById('detailImg').src = ev.img;
+            document.getElementById('detailTitle').textContent = ev.title;
+            document.getElementById('detailLocation').textContent = ev.location;
+            document.getElementById('detailDate').textContent = ev.date;
+            document.getElementById('detailTime').textContent = ev.time;
+            document.getElementById('detailCategory').textContent = ev.category;
+            document.getElementById('detailSpots').textContent = ev.spots + ' registered';
+            document.getElementById('detailsModal').classList.remove('hidden');
+        }
+
+        // ==================== REGISTER ====================
+        let currentRegId = null;
+
+        function openRegister(id) {
+            const ev = eventsData[id];
+            if (!ev) return;
+            if (registeredEvents[id]) {
+                alert('You are already registered for this event!');
+                return;
+            }
+            currentRegId = id;
+            document.getElementById('regEventName').textContent = ev.title;
+            document.getElementById('registerModal').classList.remove('hidden');
+        }
+
+        function handleRegistration(e) {
+            e.preventDefault();
+            const ev = eventsData[currentRegId];
+            if (!ev) return;
+
+            registeredEvents[currentRegId] = {
+                ...ev,
+                name: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value,
+                regDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            };
+
+            // Close modal & reset
+            document.getElementById('registerModal').classList.add('hidden');
+            document.getElementById('registerForm').reset();
+
+            // Update card to show registered badge
+            const card = document.querySelector(`.event-card[data-event="${currentRegId}"]`);
+            if (card) {
+                let badge = card.querySelector('.reg-badge');
+                if (!badge) {
+                    badge = document.createElement('div');
+                    badge.className = 'reg-badge absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full z-10';
+                    badge.textContent = 'Registered';
+                    card.querySelector('.relative').appendChild(badge);
+                }
+            }
+
+            renderRegistrations();
+        }
+
+        // ==================== RENDER REGISTRATIONS ====================
+        function renderRegistrations() {
+            const list = document.getElementById('registeredList');
+            const keys = Object.keys(registeredEvents);
+            document.getElementById('regCount').textContent = keys.length + ' event' + (keys.length !== 1 ? 's' : '');
+
+            if (keys.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-16">
+                        <span class="material-symbols-outlined text-zinc-700 text-6xl mb-4 block">event_busy</span>
+                        <p class="text-zinc-500 font-medium">You haven't registered for any events yet.</p>
+                        <button onclick="switchTab('browse')" class="mt-4 text-violet-400 font-bold hover:text-violet-300 transition-colors">Browse Events →</button>
+                    </div>`;
+                return;
+            }
+
+            list.innerHTML = keys.map(id => {
+                const r = registeredEvents[id];
+                return `
+                <div class="glass-panel rounded-2xl border border-zinc-800/80 p-5 flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <img src="${r.img}" class="w-14 h-14 rounded-xl object-cover" alt="Event"/>
+                        <div>
+                            <p class="font-bold text-white">${r.title}</p>
+                            <p class="text-xs text-zinc-500">${r.location} · ${r.date} · ${r.time}</p>
+                            <p class="text-[10px] text-emerald-400 font-bold mt-1 uppercase tracking-widest">Registered on ${r.regDate}</p>
+                        </div>
+                    </div>
+                    <button onclick="cancelRegistration(${id})" class="p-2 text-zinc-500 hover:text-red-400 hover:bg-red-900/10 rounded-lg transition-all" title="Cancel Registration">
+                        <span class="material-symbols-outlined">cancel</span>
+                    </button>
+                </div>`;
+            }).join('');
+        }
+
+        // ==================== CANCEL REGISTRATION ====================
+        function cancelRegistration(id) {
+            if (!confirm('Cancel your registration for ' + registeredEvents[id].title + '?')) return;
+            delete registeredEvents[id];
+
+            // Remove registered badge from card
+            const card = document.querySelector(`.event-card[data-event="${id}"]`);
+            if (card) {
+                const badge = card.querySelector('.reg-badge');
+                if (badge) badge.remove();
+            }
+
+            renderRegistrations();
+        }
+
+        // ==================== SIDEBAR TOGGLE ====================
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const toggleBtn = document.getElementById('sidebarToggle');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.style.width = '72px';
+                mainContent.style.marginLeft = '72px';
+            } else {
+                sidebar.style.width = '256px';
+                mainContent.style.marginLeft = '256px';
+            }
+        });
+
+        // Typewriter animation for ProVenue
+        window.addEventListener('load', () => {
+            const el = document.getElementById('provenueText');
+            if (el) {
+                setTimeout(() => {
+                    el.classList.add('typing');
+                    setTimeout(() => el.classList.add('typewriter-done'), 1000);
+                }, 300);
+            }
+        });
+    </script>
+</body>
+
+</html>
