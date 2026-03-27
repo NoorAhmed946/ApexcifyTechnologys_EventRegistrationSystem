@@ -46,7 +46,6 @@ function openEditEvent(rowIndex) {
     // Date and time would need parsing; leave empty for user to set
     document.getElementById('editDate').value = '';
     document.getElementById('editTime').value = '';
-    document.getElementById('editPrice').value = '';
 
     document.getElementById('editEventModal').classList.remove('hidden');
 }
@@ -119,7 +118,6 @@ function handleCreateEvent(event) {
     const timeStr = `${hours}:${minutes} ${ampm}`;
 
     const capacity = document.getElementById('eventCapacity').value;
-    const price = parseFloat(document.getElementById('eventPrice').value).toLocaleString();
     let img = document.getElementById('eventImageUrl').value;
     if (!img) {
         img = "https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8"; // placeholder
