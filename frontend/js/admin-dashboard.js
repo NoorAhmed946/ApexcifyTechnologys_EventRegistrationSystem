@@ -43,6 +43,7 @@ function openEditEvent(rowIndex) {
     document.getElementById('editTitle').value = title;
     document.getElementById('editLocation').value = location;
     document.getElementById('editCapacity').value = capacity;
+    document.getElementById('editDescription').value = ''; // Backend will populate this if it exists
     // Date and time would need parsing; leave empty for user to set
     document.getElementById('editDate').value = '';
     document.getElementById('editTime').value = '';
@@ -59,6 +60,7 @@ function handleEditEvent(e) {
     if (!row) return;
 
     const title = document.getElementById('editTitle').value;
+    const desc = document.getElementById('editDescription').value;
     const date = document.getElementById('editDate').value;
     const time = document.getElementById('editTime').value;
     const location = document.getElementById('editLocation').value;
@@ -105,6 +107,7 @@ function handleCreateEvent(event) {
 
     // Get values
     const title = document.getElementById('eventTitle').value;
+    const desc = document.getElementById('eventDescription').value;
     const loc = document.getElementById('eventLocation').value;
     const dtObj = new Date(document.getElementById('eventDate').value);
     const dateStr = dtObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
