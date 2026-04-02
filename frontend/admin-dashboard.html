@@ -137,83 +137,7 @@
                             </tr>
                         </thead>
                         <tbody id="eventsTableBody" class="divide-y divide-zinc-800/50">
-                            <!-- Row 1 -->
-                            <tr class="hover:bg-zinc-900/30 transition-colors">
-                                <td class="py-4 px-4">
-                                    <div class="flex items-center gap-4">
-                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8"
-                                            class="w-12 h-12 rounded-lg object-cover" alt="Thumb" />
-                                        <div>
-                                            <p class="font-bold text-white mb-0.5">Midnight Synthwave Session</p>
-                                            <p class="text-xs text-zinc-500">Warehouse 7</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4">
-                                    <p class="text-sm font-bold text-zinc-200">Oct 24, 2024</p>
-                                    <p class="text-xs text-zinc-500">9:00 PM</p>
-                                </td>
-                                <td class="py-4 px-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-full bg-zinc-800 rounded-full h-1.5 max-w-[100px]">
-                                            <div class="bg-violet-500 h-1.5 rounded-full" style="width: 85%"></div>
-                                        </div>
-                                        <span class="text-sm font-medium text-zinc-300">850/1000</span>
-                                    </div>
-                                </td>
-
-                                <td class="py-4 px-4 text-right">
-                                    <button onclick="openEditEvent(0)"
-                                        class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-all"
-                                        title="Edit Event">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                                    </button>
-                                    <button
-                                        class="p-2 text-zinc-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all"
-                                        title="Cancel/Delete Event">
-                                        <span class="material-symbols-outlined text-[20px]">delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <!-- Row 2 -->
-                            <tr class="hover:bg-zinc-900/30 transition-colors">
-                                <td class="py-4 px-4">
-                                    <div class="flex items-center gap-4">
-                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMoGxo1egxBP12IMedQEWflI08FHJlMgiCuDD8iLrbg4Hv1Hwe-Brg8CKgE7zDEforXNXOo5nvG-25ncrOFT0lImnDIMmJHrDM4UDMXM2RteWSk86xZd2EUanrnwYE3KBKVtvID_QqlPXV6drMryx7iP07h41M66oqBpFC4kamcuByJxylmBsycrhjJWNQyjWk3GDZ5yuKnmttiGPr9HY9BQyowoL_sAliW4zVsLnDkHwmanN8rjSjbj1MDU_77ZptnPxQUnk_F8"
-                                            class="w-12 h-12 rounded-lg object-cover" alt="Thumb" />
-                                        <div>
-                                            <p class="font-bold text-white mb-0.5">Digital Aura Exhibit</p>
-                                            <p class="text-xs text-zinc-500">Grand Gallery</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4">
-                                    <p class="text-sm font-bold text-zinc-200">Nov 15, 2024</p>
-                                    <p class="text-xs text-zinc-500">10:00 AM</p>
-                                </td>
-                                <td class="py-4 px-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-full bg-zinc-800 rounded-full h-1.5 max-w-[100px]">
-                                            <div class="bg-violet-500 h-1.5 rounded-full" style="width: 45%"></div>
-                                        </div>
-                                        <span class="text-sm font-medium text-zinc-300">225/500</span>
-                                    </div>
-                                </td>
-
-                                <td class="py-4 px-4 text-right">
-                                    <button onclick="openEditEvent(1)"
-                                        class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-all"
-                                        title="Edit Event">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                                    </button>
-                                    <button
-                                        class="p-2 text-zinc-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all"
-                                        title="Cancel/Delete Event">
-                                        <span class="material-symbols-outlined text-[20px]">delete</span>
-                                    </button>
-                                </td>
-                            </tr>
+                            <!-- Events will be populated by JS -->
                         </tbody>
                     </table>
                 </div>
@@ -228,115 +152,7 @@
             </header>
 
             <div class="space-y-4">
-                <!-- Event 1 Accordion -->
-                <div class="glass-panel rounded-2xl border border-zinc-800/80 overflow-hidden">
-                    <button onclick="toggleEvent(this)"
-                        class="w-full flex items-center justify-between p-5 hover:bg-zinc-900/30 transition-colors">
-                        <div class="flex items-center gap-4">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJIXqbFZrh7mVW5LcsPV_GADQWiSEYufpLfonQm80QqSdqxAxmktJvEmree4y5cA1naF9GHTnQ29DAtT9ian06FYH_irpLI4E4_7KUzNmV1MErpImtMu7gkcipcFC1vskuHj4Ja_ABvoJbE0lJPWzlkpAeY1XPpAGP3HzE8Un8IsAAwjFublSxTxPq_Qcb_J9WUogYeBUIsxN13211cvCR9fcdweSmNdAt28gVE7Ns-shUO3pJ0qgsmLCtsQlqCm2vRVMtwiHZdP8"
-                                class="w-12 h-12 rounded-lg object-cover" alt="Event" />
-                            <div class="text-left">
-                                <h3 class="font-headline font-bold text-white text-lg">Midnight Synthwave Session</h3>
-                                <p class="text-xs text-zinc-500">Oct 24, 2024 · Warehouse 7 · <span
-                                        class="text-violet-400 font-bold">3 attendees</span></p>
-                            </div>
-                        </div>
-                        <span
-                            class="material-symbols-outlined text-zinc-500 transition-transform duration-200 chevron">expand_more</span>
-                    </button>
-                    <div class="event-attendees hidden border-t border-zinc-800/50">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="border-b border-zinc-800/50">
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Name</th>
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Email</th>
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Phone</th>
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Registered On</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-zinc-800/30">
-                                <tr class="hover:bg-zinc-900/20 transition-colors">
-                                    <td class="py-3 px-5 text-sm font-medium text-white">Ahmed Khan</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">ahmed.khan@email.com</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">+92 300 1234567</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-500">Oct 10, 2024</td>
-                                </tr>
-                                <tr class="hover:bg-zinc-900/20 transition-colors">
-                                    <td class="py-3 px-5 text-sm font-medium text-white">Sara Ali</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">sara.ali@email.com</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">+92 312 9876543</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-500">Oct 12, 2024</td>
-                                </tr>
-                                <tr class="hover:bg-zinc-900/20 transition-colors">
-                                    <td class="py-3 px-5 text-sm font-medium text-white">Noor Ahmed</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">noor.ahmed@email.com</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">+92 333 5551234</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-500">Oct 15, 2024</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Event 2 Accordion -->
-                <div class="glass-panel rounded-2xl border border-zinc-800/80 overflow-hidden">
-                    <button onclick="toggleEvent(this)"
-                        class="w-full flex items-center justify-between p-5 hover:bg-zinc-900/30 transition-colors">
-                        <div class="flex items-center gap-4">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMoGxo1egxBP12IMedQEWflI08FHJlMgiCuDD8iLrbg4Hv1Hwe-Brg8CKgE7zDEforXNXOo5nvG-25ncrOFT0lImnDIMmJHrDM4UDMXM2RteWSk86xZd2EUanrnwYE3KBKVtvID_QqlPXV6drMryx7iP07h41M66oqBpFC4kamcuByJxylmBsycrhjJWNQyjWk3GDZ5yuKnmttiGPr9HY9BQyowoL_sAliW4zVsLnDkHwmanN8rjSjbj1MDU_77ZptnPxQUnk_F8"
-                                class="w-12 h-12 rounded-lg object-cover" alt="Event" />
-                            <div class="text-left">
-                                <h3 class="font-headline font-bold text-white text-lg">Digital Aura Exhibit</h3>
-                                <p class="text-xs text-zinc-500">Nov 15, 2024 · Grand Gallery · <span
-                                        class="text-violet-400 font-bold">2 attendees</span></p>
-                            </div>
-                        </div>
-                        <span
-                            class="material-symbols-outlined text-zinc-500 transition-transform duration-200 chevron">expand_more</span>
-                    </button>
-                    <div class="event-attendees hidden border-t border-zinc-800/50">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="border-b border-zinc-800/50">
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Name</th>
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Email</th>
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Phone</th>
-                                    <th
-                                        class="py-3 px-5 font-label text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                                        Registered On</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-zinc-800/30">
-                                <tr class="hover:bg-zinc-900/20 transition-colors">
-                                    <td class="py-3 px-5 text-sm font-medium text-white">Bilal Hassan</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">bilal.hassan@email.com</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">+92 321 4567890</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-500">Nov 1, 2024</td>
-                                </tr>
-                                <tr class="hover:bg-zinc-900/20 transition-colors">
-                                    <td class="py-3 px-5 text-sm font-medium text-white">Fatima Zahra</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">fatima.zahra@email.com</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-400">+92 345 6789012</td>
-                                    <td class="py-3 px-5 text-sm text-zinc-500">Nov 3, 2024</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <!-- Attendees will be populated by JS -->
             </div>
         </div> <!-- end attendeesTab -->
     </main>
@@ -374,7 +190,8 @@
 
                     <!-- Description -->
                     <div>
-                        <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">DESCRIPTION</label>
+                        <label
+                            class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">DESCRIPTION</label>
                         <textarea id="eventDescription" rows="3" required
                             class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none resize-none"
                             placeholder="Tell attendees about this event..."></textarea>
@@ -465,35 +282,41 @@
                 <input type="hidden" id="editEventIndex" />
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">EVENT TITLE</label>
+                        <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">EVENT
+                            TITLE</label>
                         <input type="text" id="editTitle" required
                             class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">DESCRIPTION</label>
+                        <label
+                            class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">DESCRIPTION</label>
                         <textarea id="editDescription" rows="3" required
                             class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none resize-none"></textarea>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">DATE</label>
+                            <label
+                                class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">DATE</label>
                             <input type="date" id="editDate" required
                                 class="relative block w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none [&::-webkit-calendar-picker-indicator]:filter-[invert(1)]">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">TIME</label>
+                            <label
+                                class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">TIME</label>
                             <input type="time" id="editTime" required
                                 class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none [&::-webkit-calendar-picker-indicator]:filter-[invert(1)]">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">LOCATION</label>
+                            <label
+                                class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">LOCATION</label>
                             <input type="text" id="editLocation" required
                                 class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">CATEGORY</label>
+                            <label
+                                class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">CATEGORY</label>
                             <select id="editCategory" required
                                 class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none appearance-none">
                                 <option value="Digital Art">Digital Art</option>
@@ -504,7 +327,8 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">TOTAL CAPACITY</label>
+                        <label class="block text-[10px] font-black tracking-widest text-violet-400 mb-2">TOTAL
+                            CAPACITY</label>
                         <input type="number" id="editCapacity" required min="1"
                             class="w-full bg-zinc-950/50 border border-zinc-800 rounded-xl py-3 px-4 text-zinc-100 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors focus:outline-none">
                     </div>
@@ -513,7 +337,8 @@
                     <button type="button" onclick="document.getElementById('editEventModal').classList.add('hidden')"
                         class="px-6 py-3 font-bold text-zinc-400 hover:text-white transition-colors">Cancel</button>
                     <button type="submit"
-                        class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-8 rounded-xl shadow-[0_0_20px_rgba(72,0,178,0.3)] hover:scale-[1.02] transition-all">Update Event</button>
+                        class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-8 rounded-xl shadow-[0_0_20px_rgba(72,0,178,0.3)] hover:scale-[1.02] transition-all">Update
+                        Event</button>
                 </div>
             </form>
         </div>

@@ -1,17 +1,64 @@
 // ==================== LOGIN PAGE JS ====================
 
 // Sign In handler
-function handleSignIn(e) {
+async function handleSignIn(e) {
     e.preventDefault();
-    const role = document.querySelector('input[name="role"]:checked').value;
-    window.location.href = role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';
+    const email = document.getElementById('signinEmail').value;
+    const password = document.getElementById('signinPassword').value;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await response.json();
+        
+        if (response.ok) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data));
+            window.location.href = data.role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';
+        } else {
+            alert(data.message || 'Login failed');
+        }
+    } catch (err) {
+        alert('Server error');
+    }
 }
 
 // Sign Up handler
-function handleSignUp(e) {
+async function handleSignUp(e) {
     e.preventDefault();
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const phone = document.getElementById('signupPhone').value;
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('signupConfirmPassword').value;
     const role = document.querySelector('input[name="signupRole"]:checked').value;
-    window.location.href = role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:5000/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, password, role })
+        });
+        const data = await response.json();
+        
+        if (response.ok) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data));
+            window.location.href = data.role === 'organizer' ? 'admin-dashboard.html' : 'dashboard.html';
+        } else {
+            alert(data.message || 'Registration failed');
+        }
+    } catch (err) {
+        alert('Server error');
+    }
 }
 
 // Tab switching between Sign In and Create Account

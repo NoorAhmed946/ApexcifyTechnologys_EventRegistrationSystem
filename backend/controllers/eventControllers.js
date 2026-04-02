@@ -29,11 +29,10 @@ const createEvent = async (req, res) => {
 
 
 const getEvents = async (req, res) => {
-    // 🛠️ Optimization: Used .select() to only return basic info for frontend "Cards"
-    // By only sending what's needed for the grid view, your API runs much faster!
+
     const events = await Event.find({})
-        .select('title imageUrl date location category');
-    
+        .select('title imageUrl date time location category capacity');
+
     res.json(events);
 };
 
@@ -48,4 +47,42 @@ const getEventById = async (req, res) => {
     }
 };
 
-module.exports = { createEvent, getEvents, getEventById };
+const updateEvent = async (req, res) => {
+    const event = await Event.findById(req.params.id);
+
+    if (event) {
+        // Only allow organizer who created the event to update it
+        if (event.organizer.toString() !== req.user._id.toString()) {
+            res.status(401);
+            throw new Error('Not authorized to update this event');
+        }
+
+        const updatedEvent = await Event.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+        res.json(updatedEvent);
+    } else {
+        res.status(404);
+        throw new Error('Event not found');
+    }
+};
+
+const deleteEvent = async (req, res) => {
+    const event = await Event.findById(req.params.id);
+
+    if (event) {
+        if (event.organizer.toString() !== req.user._id.toString()) {
+            res.status(401);
+            throw new Error('Not authorized to delete this event');
+        }
+        await event.deleteOne();
+        res.json({ message: 'Event removed' });
+    } else {
+        res.status(404);
+        throw new Error('Event not found');
+    }
+};
+
+module.exports = { createEvent, getEvents, getEventById, updateEvent, deleteEvent };

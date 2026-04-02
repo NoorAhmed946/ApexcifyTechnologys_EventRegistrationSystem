@@ -33,4 +33,18 @@ const getMyRegistrations = async (req, res) => {
     res.json(registrations);
 };
 
-module.exports = { registerForEvent, getMyRegistrations };
+const cancelRegistration = async (req, res) => {
+    const eventId = req.params.eventId;
+    const userId = req.user._id;
+
+    const registration = await Registration.findOne({ user: userId, event: eventId });
+    if (!registration) {
+        res.status(404);
+        throw new Error('Registration not found');
+    }
+
+    await registration.deleteOne();
+    res.json({ message: 'Registration cancelled' });
+};
+
+module.exports = { registerForEvent, getMyRegistrations, cancelRegistration };
