@@ -23,16 +23,11 @@ async function loadEvents() {
         const response = await fetch('http://localhost:5000/api/events');
         if (response.ok) {
             const allEvents = await response.json();
-            
-            // Filter events that belong to the logged-in organizer.
-            // Since getEvents might not return organizer in .select(), we might see all events if backend doesn't filter.
-            // For now, let's assume we render what we get or filter if organizer field is present.
             const user = getUser();
             eventsData = allEvents.filter(ev => !ev.organizer || ev.organizer === user._id || typeof ev.organizer === 'object' && ev.organizer._id === user._id);
-            // If backend didn't send 'organizer' due to .select constraint, it will render all events (fallback).
-            // To be accurate, we'll just render whatever we get for now.
-            if(eventsData.length === 0 && allEvents.length > 0) {
-                 eventsData = allEvents; // Fallback if no organizer field
+
+            if (eventsData.length === 0 && allEvents.length > 0) {
+                eventsData = allEvents; // Fallback if no organizer field
             }
 
             renderEventsTable();
@@ -46,14 +41,14 @@ async function loadEvents() {
 function renderEventsTable() {
     const tbody = document.getElementById('eventsTableBody');
     if (!tbody) return;
-    
+
     tbody.innerHTML = eventsData.map((ev, index) => {
         const img = ev.imageUrl || defaultImg;
         // Mock registration count since the backend doesn't provide it via basic getEvents easily without a separate query
-        const regCount = ev.registeredCount || 0; 
+        const regCount = ev.registeredCount || 0;
         const capacity = ev.capacity || 100;
         const pct = Math.min(100, Math.round((regCount / capacity) * 100)) || 0;
-        
+
         return `
         <tr class="hover:bg-zinc-900/30 transition-colors" data-event-id="${ev._id}">
             <td class="py-4 px-4">
@@ -89,12 +84,12 @@ function renderEventsTable() {
 function renderAttendeesTab() {
     const container = document.querySelector('#attendeesTab .space-y-4');
     if (!container) return;
-    
+
     container.innerHTML = eventsData.map(ev => {
         const img = ev.imageUrl || defaultImg;
         return `
         <div class="glass-panel rounded-2xl border border-zinc-800/80 overflow-hidden mb-4">
-            <button onclick="toggleEvent(this)" class="w-full flex items-center justify-between p-5 hover:bg-zinc-900/30 transition-colors">
+            <button onclick="toggleEvent(this, '${ev._id}')" class="w-full flex items-center justify-between p-5 hover:bg-zinc-900/30 transition-colors">
                 <div class="flex items-center gap-4">
                     <img src="${img}" class="w-12 h-12 rounded-lg object-cover" alt="Event" />
                     <div class="text-left">
@@ -104,8 +99,8 @@ function renderAttendeesTab() {
                 </div>
                 <span class="material-symbols-outlined text-zinc-500 transition-transform duration-200 chevron">expand_more</span>
             </button>
-            <div class="event-attendees hidden border-t border-zinc-800/50 p-4 text-center text-zinc-500">
-                Attendee list fetching not fully implemented in API yet.
+            <div id="attendees-${ev._id}" class="event-attendees hidden border-t border-zinc-800/50 p-4 text-left text-zinc-300">
+                <div class="flex justify-center"><div class="w-6 h-6 border-2 border-violet-500 border-t-transparent rounded-full animate-spin"></div></div>
             </div>
         </div>`;
     }).join('');
@@ -123,11 +118,11 @@ async function handleCreateEvent(event) {
     const category = document.getElementById('eventCategory').value;
     const capacity = document.getElementById('eventCapacity').value;
     const imageUrl = document.getElementById('eventImageUrl').value || defaultImg;
-    
+
     // Formatting date and time nicely
     const dtObj = new Date(document.getElementById('eventDate').value);
     const dateStr = dtObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    
+
     const timeRaw = document.getElementById('eventTime').value;
     let [hours, minutes] = timeRaw.split(':');
     hours = parseInt(hours);
@@ -142,7 +137,7 @@ async function handleCreateEvent(event) {
     try {
         const response = await fetch('http://localhost:5000/api/events', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${getToken()}`
             },
@@ -157,7 +152,7 @@ async function handleCreateEvent(event) {
             const data = await response.json();
             alert(data.message || 'Failed to create event');
         }
-    } catch(e) {
+    } catch (e) {
         alert('Server error');
     }
 }
@@ -168,23 +163,23 @@ let currentEditId = null;
 async function openEditEvent(id) {
     try {
         const response = await fetch(`http://localhost:5000/api/events/${id}`);
-        if(response.ok) {
+        if (response.ok) {
             const ev = await response.json();
             currentEditId = ev._id;
-            
+
             document.getElementById('editTitle').value = ev.title;
             document.getElementById('editDescription').value = ev.description;
             document.getElementById('editLocation').value = ev.location;
             document.getElementById('editCategory').value = ev.category;
             document.getElementById('editCapacity').value = ev.capacity;
-            
+
             // Try to set date and time if they match standard formats, else leave blank
             document.getElementById('editDate').value = '';
             document.getElementById('editTime').value = '';
-            
+
             document.getElementById('editEventModal').classList.remove('hidden');
         }
-    } catch(e){
+    } catch (e) {
         alert('Failed to load event details.');
     }
 }
@@ -202,13 +197,13 @@ async function handleEditEvent(e) {
     };
 
     const dateVal = document.getElementById('editDate').value;
-    if(dateVal) {
+    if (dateVal) {
         const dtObj = new Date(dateVal);
         payload.date = dtObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
-    
+
     const timeVal = document.getElementById('editTime').value;
-    if(timeVal) {
+    if (timeVal) {
         let [hours, minutes] = timeVal.split(':');
         hours = parseInt(hours);
         const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -219,7 +214,7 @@ async function handleEditEvent(e) {
     try {
         const response = await fetch(`http://localhost:5000/api/events/${currentEditId}`, {
             method: 'PUT',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${getToken()}`
             },
@@ -241,13 +236,13 @@ async function handleEditEvent(e) {
 // ==================== DELETE EVENT ====================
 async function deleteEvent(id) {
     if (!confirm('Are you sure you want to delete this event? This action cannot be undone.')) return;
-    
+
     try {
         const response = await fetch(`http://localhost:5000/api/events/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${getToken()}` }
         });
-        
+
         if (response.ok) {
             loadEvents();
         } else {
@@ -277,11 +272,40 @@ function switchAdminTab(tab) {
     });
 }
 
-function toggleEvent(btn) {
+function toggleEvent(btn, eventId) {
     const panel = btn.nextElementSibling;
     const chevron = btn.querySelector('.chevron');
     panel.classList.toggle('hidden');
     chevron.style.transform = panel.classList.contains('hidden') ? '' : 'rotate(180deg)';
+
+    if (!panel.classList.contains('hidden') && eventId && !panel.dataset.loaded) {
+        fetch(`http://localhost:5000/api/registrations/event/${eventId}`, {
+            headers: { 'Authorization': `Bearer ${getToken()}` }
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Network error');
+            return res.json();
+        })
+        .then(regs => {
+            if (regs.length === 0) {
+                panel.innerHTML = '<p class="text-center text-zinc-500 mt-2 mb-2">No attendees registered yet.</p>';
+            } else {
+                panel.innerHTML = regs.map((r, i) => `
+                    <div class="flex items-center gap-4 p-3 hover:bg-zinc-800/30 rounded-lg transition-colors border-b border-zinc-800/50 last:border-0">
+                        <div class="w-8 h-8 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-sm border border-violet-500/30">${i+1}</div>
+                        <div>
+                            <p class="text-sm font-bold text-white">${r.user?.name || 'Unknown User'}</p>
+                            <p class="text-xs text-zinc-400">${r.user?.email || 'No email provided'} ${r.user?.phone ? '• ' + r.user.phone : ''}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            panel.dataset.loaded = 'true';
+        })
+        .catch(e => {
+            panel.innerHTML = '<p class="text-center text-red-500 mt-2 mb-2">Failed to load attendees.</p>';
+        });
+    }
 }
 
 function searchEvents() {

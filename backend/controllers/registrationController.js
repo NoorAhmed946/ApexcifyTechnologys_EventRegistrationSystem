@@ -47,4 +47,24 @@ const cancelRegistration = async (req, res) => {
     res.json({ message: 'Registration cancelled' });
 };
 
-module.exports = { registerForEvent, getMyRegistrations, cancelRegistration };
+const getEventRegistrations = async (req, res) => {
+    const eventId = req.params.eventId;
+    
+    // Check if event exists
+    const event = await Event.findById(eventId);
+    if (!event) {
+        res.status(404);
+        throw new Error('Event not found');
+    }
+    
+    // Verify organizer
+    if (event.organizer.toString() !== req.user._id.toString()) {
+        res.status(401);
+        throw new Error('Not authorized to view attendees for this event');
+    }
+
+    const registrations = await Registration.find({ event: eventId }).populate('user', 'name email phone');
+    res.json(registrations);
+};
+
+module.exports = { registerForEvent, getMyRegistrations, cancelRegistration, getEventRegistrations };

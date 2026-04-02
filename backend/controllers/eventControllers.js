@@ -28,12 +28,19 @@ const createEvent = async (req, res) => {
 };
 
 
+const Registration = require('../models/registrations');
+
 const getEvents = async (req, res) => {
-
     const events = await Event.find({})
-        .select('title imageUrl date time location category capacity');
+        .select('title imageUrl date time location category capacity organizer')
+        .lean();
 
-    res.json(events);
+    const eventsWithCounts = await Promise.all(events.map(async (ev) => {
+        const count = await Registration.countDocuments({ event: ev._id });
+        return { ...ev, registeredCount: count };
+    }));
+
+    res.json(eventsWithCounts);
 };
 
 const getEventById = async (req, res) => {
